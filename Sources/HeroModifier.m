@@ -10,4 +10,9 @@
 
 @implementation HeroModifier
 
++ (HeroModifier *)modifierFromName:(NSString *)name parameters:(NSArray <NSString *>*)parameters {
+    HeroModifier *modifier;
+
+}
+
 @end

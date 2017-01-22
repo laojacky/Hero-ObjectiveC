@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HeroTypes.h"
 
-@interface HeroPlugin : NSObject
+@interface HeroPlugin : NSObject <HeroPreprocessor, HeroAnimator>
 
 @end
