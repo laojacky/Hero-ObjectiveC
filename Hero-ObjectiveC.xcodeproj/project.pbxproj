@@ -9,66 +9,68 @@
 /* Begin PBXBuildFile section */
 		64F079991E346D94005331E0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F079981E346D94005331E0 /* main.m */; };
 		64F0799C1E346D94005331E0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F0799B1E346D94005331E0 /* AppDelegate.m */; };
-		64F0799F1E346D94005331E0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F0799E1E346D94005331E0 /* ViewController.m */; };
+		64F0799F1E346D94005331E0 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F0799E1E346D94005331E0 /* InitialViewController.m */; };
 		64F079A21E346D94005331E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64F079A01E346D94005331E0 /* Main.storyboard */; };
 		64F079A41E346D94005331E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64F079A31E346D94005331E0 /* Assets.xcassets */; };
 		64F079A71E346D94005331E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64F079A51E346D94005331E0 /* LaunchScreen.storyboard */; };
-		64F079B21E346D94005331E0 /* Hero_ObjectiveCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F079B11E346D94005331E0 /* Hero_ObjectiveCTests.m */; };
-		64F079BD1E346D94005331E0 /* Hero_ObjectiveCUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F079BC1E346D94005331E0 /* Hero_ObjectiveCUITests.m */; };
+		64F079CD1E347BC1005331E0 /* UIKit+HeroExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F079CC1E347BC1005331E0 /* UIKit+HeroExamples.m */; };
+		64F079D71E348029005331E0 /* Basic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64F079D11E348029005331E0 /* Basic.storyboard */; };
+		64F079DA1E348029005331E0 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64F079D31E348029005331E0 /* Menu.storyboard */; };
+		64F079DD1E348029005331E0 /* MusicPlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64F079D51E348029005331E0 /* MusicPlayer.storyboard */; };
+		64F079E31E3481D5005331E0 /* CityGuide.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64F079E11E3481D5005331E0 /* CityGuide.storyboard */; };
+		64F079E81E348217005331E0 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F079E71E348217005331E0 /* City.m */; };
+		64F079ED1E348492005331E0 /* CityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F079EC1E348492005331E0 /* CityCell.m */; };
+		64F079F81E348759005331E0 /* UIKit+Hero.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F079F71E348759005331E0 /* UIKit+Hero.m */; };
+		64F079FB1E348AA2005331E0 /* HeroModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F079FA1E348AA2005331E0 /* HeroModifier.m */; };
+		64F079FE1E348BAB005331E0 /* Hero.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F079FD1E348BAB005331E0 /* Hero.m */; };
+		64F07A011E348BCA005331E0 /* HeroContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A001E348BCA005331E0 /* HeroContext.m */; };
+		64F07A041E348C41005331E0 /* HeroPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A031E348C41005331E0 /* HeroPlugin.m */; };
+		64F07A071E348C5C005331E0 /* HeroTargetState.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A061E348C5C005331E0 /* HeroTargetState.m */; };
+		64F07A0A1E348C7A005331E0 /* HeroTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A091E348C7A005331E0 /* HeroTypes.m */; };
+		64F07A0D1E348EDD005331E0 /* BasePreprocessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A0C1E348EDD005331E0 /* BasePreprocessor.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		64F079AE1E346D94005331E0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64F0798C1E346D94005331E0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 64F079931E346D94005331E0;
-			remoteInfo = "Hero-ObjectiveC";
-		};
-		64F079B91E346D94005331E0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64F0798C1E346D94005331E0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 64F079931E346D94005331E0;
-			remoteInfo = "Hero-ObjectiveC";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		64F079941E346D94005331E0 /* Hero-ObjectiveC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hero-ObjectiveC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64F079981E346D94005331E0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		64F0799A1E346D94005331E0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		64F0799B1E346D94005331E0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		64F0799D1E346D94005331E0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		64F0799E1E346D94005331E0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		64F0799A1E346D94005331E0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = "Hero-ObjectiveC/AppDelegate.h"; sourceTree = "<group>"; };
+		64F0799B1E346D94005331E0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = "Hero-ObjectiveC/AppDelegate.m"; sourceTree = "<group>"; };
+		64F0799D1E346D94005331E0 /* InitialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
+		64F0799E1E346D94005331E0 /* InitialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		64F079A11E346D94005331E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		64F079A31E346D94005331E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		64F079A31E346D94005331E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Hero-ObjectiveC/Assets.xcassets"; sourceTree = "<group>"; };
 		64F079A61E346D94005331E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		64F079A81E346D94005331E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		64F079AD1E346D94005331E0 /* Hero-ObjectiveCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hero-ObjectiveCTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		64F079B11E346D94005331E0 /* Hero_ObjectiveCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hero_ObjectiveCTests.m; sourceTree = "<group>"; };
-		64F079B31E346D94005331E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		64F079B81E346D94005331E0 /* Hero-ObjectiveCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hero-ObjectiveCUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		64F079BC1E346D94005331E0 /* Hero_ObjectiveCUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hero_ObjectiveCUITests.m; sourceTree = "<group>"; };
-		64F079BE1E346D94005331E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64F079A81E346D94005331E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Hero-ObjectiveC/Info.plist"; sourceTree = "<group>"; };
+		64F079CB1E347BC1005331E0 /* UIKit+HeroExamples.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIKit+HeroExamples.h"; sourceTree = "<group>"; };
+		64F079CC1E347BC1005331E0 /* UIKit+HeroExamples.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIKit+HeroExamples.m"; sourceTree = "<group>"; };
+		64F079D21E348029005331E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Basic.storyboard; sourceTree = "<group>"; };
+		64F079D41E348029005331E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
+		64F079D61E348029005331E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MusicPlayer.storyboard; sourceTree = "<group>"; };
+		64F079E21E3481D5005331E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CityGuide.storyboard; sourceTree = "<group>"; };
+		64F079E61E348217005331E0 /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = City.h; path = CityGuide/City.h; sourceTree = "<group>"; };
+		64F079E71E348217005331E0 /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = City.m; path = CityGuide/City.m; sourceTree = "<group>"; };
+		64F079EB1E348492005331E0 /* CityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CityCell.h; path = CityGuide/CityCell.h; sourceTree = "<group>"; };
+		64F079EC1E348492005331E0 /* CityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CityCell.m; path = CityGuide/CityCell.m; sourceTree = "<group>"; };
+		64F079F61E348759005331E0 /* UIKit+Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIKit+Hero.h"; path = "Sources/UIKit+Hero.h"; sourceTree = "<group>"; };
+		64F079F71E348759005331E0 /* UIKit+Hero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIKit+Hero.m"; path = "Sources/UIKit+Hero.m"; sourceTree = "<group>"; };
+		64F079F91E348AA2005331E0 /* HeroModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeroModifier.h; path = Sources/HeroModifier.h; sourceTree = "<group>"; };
+		64F079FA1E348AA2005331E0 /* HeroModifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeroModifier.m; path = Sources/HeroModifier.m; sourceTree = "<group>"; };
+		64F079FC1E348BAB005331E0 /* Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hero.h; path = Sources/Hero.h; sourceTree = "<group>"; };
+		64F079FD1E348BAB005331E0 /* Hero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Hero.m; path = Sources/Hero.m; sourceTree = "<group>"; };
+		64F079FF1E348BCA005331E0 /* HeroContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeroContext.h; path = Sources/HeroContext.h; sourceTree = "<group>"; };
+		64F07A001E348BCA005331E0 /* HeroContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeroContext.m; path = Sources/HeroContext.m; sourceTree = "<group>"; };
+		64F07A021E348C41005331E0 /* HeroPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeroPlugin.h; path = Sources/HeroPlugin.h; sourceTree = "<group>"; };
+		64F07A031E348C41005331E0 /* HeroPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeroPlugin.m; path = Sources/HeroPlugin.m; sourceTree = "<group>"; };
+		64F07A051E348C5C005331E0 /* HeroTargetState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeroTargetState.h; path = Sources/HeroTargetState.h; sourceTree = "<group>"; };
+		64F07A061E348C5C005331E0 /* HeroTargetState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeroTargetState.m; path = Sources/HeroTargetState.m; sourceTree = "<group>"; };
+		64F07A081E348C7A005331E0 /* HeroTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeroTypes.h; path = Sources/HeroTypes.h; sourceTree = "<group>"; };
+		64F07A091E348C7A005331E0 /* HeroTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeroTypes.m; path = Sources/HeroTypes.m; sourceTree = "<group>"; };
+		64F07A0B1E348EDD005331E0 /* BasePreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasePreprocessor.h; path = Sources/BasePreprocessor.h; sourceTree = "<group>"; };
+		64F07A0C1E348EDD005331E0 /* BasePreprocessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BasePreprocessor.m; path = Sources/BasePreprocessor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		64F079911E346D94005331E0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64F079AA1E346D94005331E0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64F079B51E346D94005331E0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -82,8 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				64F079961E346D94005331E0 /* Hero-ObjectiveC */,
-				64F079B01E346D94005331E0 /* Hero-ObjectiveCTests */,
-				64F079BB1E346D94005331E0 /* Hero-ObjectiveCUITests */,
+				64F079F01E348694005331E0 /* Hero */,
 				64F079951E346D94005331E0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,8 +93,6 @@
 			isa = PBXGroup;
 			children = (
 				64F079941E346D94005331E0 /* Hero-ObjectiveC.app */,
-				64F079AD1E346D94005331E0 /* Hero-ObjectiveCTests.xctest */,
-				64F079B81E346D94005331E0 /* Hero-ObjectiveCUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,14 +100,11 @@
 		64F079961E346D94005331E0 /* Hero-ObjectiveC */ = {
 			isa = PBXGroup;
 			children = (
-				64F0799A1E346D94005331E0 /* AppDelegate.h */,
-				64F0799B1E346D94005331E0 /* AppDelegate.m */,
-				64F0799D1E346D94005331E0 /* ViewController.h */,
-				64F0799E1E346D94005331E0 /* ViewController.m */,
+				64F0799D1E346D94005331E0 /* InitialViewController.h */,
+				64F0799E1E346D94005331E0 /* InitialViewController.m */,
 				64F079A01E346D94005331E0 /* Main.storyboard */,
-				64F079A31E346D94005331E0 /* Assets.xcassets */,
-				64F079A51E346D94005331E0 /* LaunchScreen.storyboard */,
-				64F079A81E346D94005331E0 /* Info.plist */,
+				64F079D01E34800B005331E0 /* Examples */,
+				64F079CA1E347B75005331E0 /* Resources */,
 				64F079971E346D94005331E0 /* Supporting Files */,
 			);
 			path = "Hero-ObjectiveC";
@@ -122,22 +118,97 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		64F079B01E346D94005331E0 /* Hero-ObjectiveCTests */ = {
+		64F079CA1E347B75005331E0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				64F079B11E346D94005331E0 /* Hero_ObjectiveCTests.m */,
-				64F079B31E346D94005331E0 /* Info.plist */,
+				64F0799A1E346D94005331E0 /* AppDelegate.h */,
+				64F0799B1E346D94005331E0 /* AppDelegate.m */,
+				64F079CB1E347BC1005331E0 /* UIKit+HeroExamples.h */,
+				64F079CC1E347BC1005331E0 /* UIKit+HeroExamples.m */,
+				64F079A31E346D94005331E0 /* Assets.xcassets */,
+				64F079A51E346D94005331E0 /* LaunchScreen.storyboard */,
+				64F079A81E346D94005331E0 /* Info.plist */,
 			);
-			path = "Hero-ObjectiveCTests";
+			name = Resources;
+			path = ..;
 			sourceTree = "<group>";
 		};
-		64F079BB1E346D94005331E0 /* Hero-ObjectiveCUITests */ = {
+		64F079D01E34800B005331E0 /* Examples */ = {
 			isa = PBXGroup;
 			children = (
-				64F079BC1E346D94005331E0 /* Hero_ObjectiveCUITests.m */,
-				64F079BE1E346D94005331E0 /* Info.plist */,
+				64F079D31E348029005331E0 /* Menu.storyboard */,
+				64F079D51E348029005331E0 /* MusicPlayer.storyboard */,
+				64F079D11E348029005331E0 /* Basic.storyboard */,
+				64F079E01E3481BD005331E0 /* CityGuide */,
 			);
-			path = "Hero-ObjectiveCUITests";
+			name = Examples;
+			sourceTree = "<group>";
+		};
+		64F079E01E3481BD005331E0 /* CityGuide */ = {
+			isa = PBXGroup;
+			children = (
+				64F079E11E3481D5005331E0 /* CityGuide.storyboard */,
+				64F079E61E348217005331E0 /* City.h */,
+				64F079E71E348217005331E0 /* City.m */,
+				64F079EB1E348492005331E0 /* CityCell.h */,
+				64F079EC1E348492005331E0 /* CityCell.m */,
+			);
+			name = CityGuide;
+			sourceTree = "<group>";
+		};
+		64F079F01E348694005331E0 /* Hero */ = {
+			isa = PBXGroup;
+			children = (
+				64F079FC1E348BAB005331E0 /* Hero.h */,
+				64F079FD1E348BAB005331E0 /* Hero.m */,
+				64F079F91E348AA2005331E0 /* HeroModifier.h */,
+				64F079FA1E348AA2005331E0 /* HeroModifier.m */,
+				64F079FF1E348BCA005331E0 /* HeroContext.h */,
+				64F07A001E348BCA005331E0 /* HeroContext.m */,
+				64F07A021E348C41005331E0 /* HeroPlugin.h */,
+				64F07A031E348C41005331E0 /* HeroPlugin.m */,
+				64F07A051E348C5C005331E0 /* HeroTargetState.h */,
+				64F07A061E348C5C005331E0 /* HeroTargetState.m */,
+				64F07A081E348C7A005331E0 /* HeroTypes.h */,
+				64F07A091E348C7A005331E0 /* HeroTypes.m */,
+				64F079F11E3486D5005331E0 /* Preprocessors */,
+				64F079F41E3486FF005331E0 /* Animator */,
+				64F079F31E3486F3005331E0 /* Debug Plugin */,
+				64F079F21E3486DE005331E0 /* Extensions */,
+			);
+			name = Hero;
+			sourceTree = "<group>";
+		};
+		64F079F11E3486D5005331E0 /* Preprocessors */ = {
+			isa = PBXGroup;
+			children = (
+				64F07A0B1E348EDD005331E0 /* BasePreprocessor.h */,
+				64F07A0C1E348EDD005331E0 /* BasePreprocessor.m */,
+			);
+			name = Preprocessors;
+			sourceTree = "<group>";
+		};
+		64F079F21E3486DE005331E0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				64F079F61E348759005331E0 /* UIKit+Hero.h */,
+				64F079F71E348759005331E0 /* UIKit+Hero.m */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		64F079F31E3486F3005331E0 /* Debug Plugin */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Debug Plugin";
+			sourceTree = "<group>";
+		};
+		64F079F41E3486FF005331E0 /* Animator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Animator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,42 +231,6 @@
 			productReference = 64F079941E346D94005331E0 /* Hero-ObjectiveC.app */;
 			productType = "com.apple.product-type.application";
 		};
-		64F079AC1E346D94005331E0 /* Hero-ObjectiveCTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 64F079C41E346D94005331E0 /* Build configuration list for PBXNativeTarget "Hero-ObjectiveCTests" */;
-			buildPhases = (
-				64F079A91E346D94005331E0 /* Sources */,
-				64F079AA1E346D94005331E0 /* Frameworks */,
-				64F079AB1E346D94005331E0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				64F079AF1E346D94005331E0 /* PBXTargetDependency */,
-			);
-			name = "Hero-ObjectiveCTests";
-			productName = "Hero-ObjectiveCTests";
-			productReference = 64F079AD1E346D94005331E0 /* Hero-ObjectiveCTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		64F079B71E346D94005331E0 /* Hero-ObjectiveCUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 64F079C71E346D94005331E0 /* Build configuration list for PBXNativeTarget "Hero-ObjectiveCUITests" */;
-			buildPhases = (
-				64F079B41E346D94005331E0 /* Sources */,
-				64F079B51E346D94005331E0 /* Frameworks */,
-				64F079B61E346D94005331E0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				64F079BA1E346D94005331E0 /* PBXTargetDependency */,
-			);
-			name = "Hero-ObjectiveCUITests";
-			productName = "Hero-ObjectiveCUITests";
-			productReference = 64F079B81E346D94005331E0 /* Hero-ObjectiveCUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -208,16 +243,6 @@
 					64F079931E346D94005331E0 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
-					};
-					64F079AC1E346D94005331E0 = {
-						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 64F079931E346D94005331E0;
-					};
-					64F079B71E346D94005331E0 = {
-						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 64F079931E346D94005331E0;
 					};
 				};
 			};
@@ -235,8 +260,6 @@
 			projectRoot = "";
 			targets = (
 				64F079931E346D94005331E0 /* Hero-ObjectiveC */,
-				64F079AC1E346D94005331E0 /* Hero-ObjectiveCTests */,
-				64F079B71E346D94005331E0 /* Hero-ObjectiveCUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -246,23 +269,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64F079DA1E348029005331E0 /* Menu.storyboard in Resources */,
+				64F079E31E3481D5005331E0 /* CityGuide.storyboard in Resources */,
 				64F079A71E346D94005331E0 /* LaunchScreen.storyboard in Resources */,
+				64F079D71E348029005331E0 /* Basic.storyboard in Resources */,
 				64F079A41E346D94005331E0 /* Assets.xcassets in Resources */,
 				64F079A21E346D94005331E0 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64F079AB1E346D94005331E0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64F079B61E346D94005331E0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				64F079DD1E348029005331E0 /* MusicPlayer.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,42 +286,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64F0799F1E346D94005331E0 /* ViewController.m in Sources */,
+				64F079E81E348217005331E0 /* City.m in Sources */,
+				64F07A041E348C41005331E0 /* HeroPlugin.m in Sources */,
+				64F079F81E348759005331E0 /* UIKit+Hero.m in Sources */,
+				64F0799F1E346D94005331E0 /* InitialViewController.m in Sources */,
+				64F07A011E348BCA005331E0 /* HeroContext.m in Sources */,
+				64F079CD1E347BC1005331E0 /* UIKit+HeroExamples.m in Sources */,
+				64F07A071E348C5C005331E0 /* HeroTargetState.m in Sources */,
+				64F079FE1E348BAB005331E0 /* Hero.m in Sources */,
 				64F0799C1E346D94005331E0 /* AppDelegate.m in Sources */,
+				64F079ED1E348492005331E0 /* CityCell.m in Sources */,
+				64F079FB1E348AA2005331E0 /* HeroModifier.m in Sources */,
+				64F07A0D1E348EDD005331E0 /* BasePreprocessor.m in Sources */,
 				64F079991E346D94005331E0 /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64F079A91E346D94005331E0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64F079B21E346D94005331E0 /* Hero_ObjectiveCTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64F079B41E346D94005331E0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64F079BD1E346D94005331E0 /* Hero_ObjectiveCUITests.m in Sources */,
+				64F07A0A1E348C7A005331E0 /* HeroTypes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		64F079AF1E346D94005331E0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 64F079931E346D94005331E0 /* Hero-ObjectiveC */;
-			targetProxy = 64F079AE1E346D94005331E0 /* PBXContainerItemProxy */;
-		};
-		64F079BA1E346D94005331E0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 64F079931E346D94005331E0 /* Hero-ObjectiveC */;
-			targetProxy = 64F079B91E346D94005331E0 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		64F079A01E346D94005331E0 /* Main.storyboard */ = {
@@ -325,6 +320,39 @@
 				64F079A61E346D94005331E0 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = "Hero-ObjectiveC";
+			sourceTree = "<group>";
+		};
+		64F079D11E348029005331E0 /* Basic.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64F079D21E348029005331E0 /* Base */,
+			);
+			name = Basic.storyboard;
+			sourceTree = "<group>";
+		};
+		64F079D31E348029005331E0 /* Menu.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64F079D41E348029005331E0 /* Base */,
+			);
+			name = Menu.storyboard;
+			sourceTree = "<group>";
+		};
+		64F079D51E348029005331E0 /* MusicPlayer.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64F079D61E348029005331E0 /* Base */,
+			);
+			name = MusicPlayer.storyboard;
+			sourceTree = "<group>";
+		};
+		64F079E11E3481D5005331E0 /* CityGuide.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64F079E21E3481D5005331E0 /* Base */,
+			);
+			name = CityGuide.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -424,7 +452,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Hero-ObjectiveC/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "luca.Hero-ObjectiveC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -435,56 +465,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Hero-ObjectiveC/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "luca.Hero-ObjectiveC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		64F079C51E346D94005331E0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "Hero-ObjectiveCTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "luca.Hero-ObjectiveCTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hero-ObjectiveC.app/Hero-ObjectiveC";
-			};
-			name = Debug;
-		};
-		64F079C61E346D94005331E0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "Hero-ObjectiveCTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "luca.Hero-ObjectiveCTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hero-ObjectiveC.app/Hero-ObjectiveC";
-			};
-			name = Release;
-		};
-		64F079C81E346D94005331E0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = "Hero-ObjectiveCUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "luca.Hero-ObjectiveCUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = "Hero-ObjectiveC";
-			};
-			name = Debug;
-		};
-		64F079C91E346D94005331E0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = "Hero-ObjectiveCUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "luca.Hero-ObjectiveCUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = "Hero-ObjectiveC";
 			};
 			name = Release;
 		};
@@ -505,22 +491,6 @@
 			buildConfigurations = (
 				64F079C21E346D94005331E0 /* Debug */,
 				64F079C31E346D94005331E0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		64F079C41E346D94005331E0 /* Build configuration list for PBXNativeTarget "Hero-ObjectiveCTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				64F079C51E346D94005331E0 /* Debug */,
-				64F079C61E346D94005331E0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		64F079C71E346D94005331E0 /* Build configuration list for PBXNativeTarget "Hero-ObjectiveCUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				64F079C81E346D94005331E0 /* Debug */,
-				64F079C91E346D94005331E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
