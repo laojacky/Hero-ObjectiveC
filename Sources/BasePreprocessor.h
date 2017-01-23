@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "HeroTypes.h"
 
+@class HeroContext;
+
 @interface BasePreprocessor : NSObject <HeroPreprocessor>
+
+@property (nonatomic, strong, readonly) HeroContext *context;
+
+- (void)processFromViews:(NSArray *)fromviews toViews:(NSArray *)toviews;
 
 @end

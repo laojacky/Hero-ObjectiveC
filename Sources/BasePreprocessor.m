@@ -7,7 +7,15 @@
 //
 
 #import "BasePreprocessor.h"
+#import "Hero.h"
 
 @implementation BasePreprocessor
 
+- (HeroContext *)context {
+    return [Hero shared].context;
+}
+
+- (void)processFromViews:(NSArray *)fromviews toViews:(NSArray *)toviews {
+    return;
+}
 @end
