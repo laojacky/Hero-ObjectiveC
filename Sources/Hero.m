@@ -8,6 +8,7 @@
 
 #import "Hero.h"
 #import "HeroContext.h"
+#import "HeroPlugin.h"
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
 
@@ -15,9 +16,13 @@ typedef void(^HeroCompletionCallback)();
 
 @interface Hero ()
 
+@property (nonatomic, weak) UIViewController *toViewController;
+@property (nonatomic, weak) UIViewController *fromViewController;
 @property (nonatomic, strong) HeroContext *context;
 @property (nonatomic, assign) BOOL presenting;  //default is true in swift, but NO in here
 @property (nonatomic, assign) CGFloat progress;
+
+@property (nonatomic, strong) UIView *container;
 
 // this is the container supplied by UIKit
 @property (nonatomic, strong) UIView *transitionContainer;
@@ -43,7 +48,8 @@ typedef void(^HeroCompletionCallback)();
 @property (nonatomic, copy) NSMutableArray <id <HeroPreprocessor>> *processors;
 @property (nonatomic, copy) NSMutableArray <id <HeroAnimator>> *animators;
 @property (nonatomic, copy) NSMutableArray <HeroPlugin *> *plugins;
-@property (nonatomic, copy) NSMutableArray <HeroPlugin *> *enablePlugins;
+
+@property (nonatomic, copy) NSMutableArray <NSString *> *enablePlugins; //Here's the HeroPlugin.Type in swift version, contains the metatypes of Heroplugin; Here we using the class name to refer plugin
 
 @end
 
@@ -145,6 +151,223 @@ typedef void(^HeroCompletionCallback)();
     }
 }
 
+@end
+
+typedef void(^HeroUpdateBlock)();
+@implementation Hero (InteractiveTransition)
+
+- (void)updateProgress:(CGFloat)progress {
+    
+    if (!self.transitioning) {
+        return;
+    }
+    
+    progress = MAX(0, MIN(1, progress));
+    HeroUpdateBlock update = ^{
+        self.beginTime = 0;
+        self.progress = progress;
+    };
+    if (self.totalDuration == 0) {
+        dispatch_async(dispatch_get_main_queue(), update);
+    } else {
+        update();
+    }
+}
+
+- (void)end {
+    
+    if (!self.transitioning || !self.interactive) {
+        return;
+    }
+    
+    NSTimeInterval maxTime = 0;
+    for (id<HeroAnimator>animator in self.animators) {
+        maxTime = MAX(maxTime, [animator resumeTime:self.progress * self.totalDuration reverse:NO]);
+    }
+    [self completeAfter:maxTime finishing:YES];
+}
+
+- (void)cancel {
+    
+    if (!self.transitioning || !self.interactive) {
+        return;
+    }
+    
+    NSTimeInterval maxTime = 0;
+    for (id<HeroAnimator>animator in self.animators) {
+        maxTime = MAX(maxTime, [animator resumeTime:self.progress * self.totalDuration reverse:YES]);
+    }
+    [self completeAfter:maxTime finishing:NO];
+}
+
+- (void)applyModifiers:(NSArray *)modifiers toView:(UIView *)view {
+    
+    if (!self.transitioning || !self.interactive) {
+        return;
+    }
+    
+    HeroTargetState targetState = [HeroTargetState stateForModifiers:modifiers];
+    UIView *otherView = [self.context.pairedView pairedViewForView:view];
+    if (otherView) {
+        for (id<HeroAnimator>animator in self.animators) {
+            [animator applyState:targetState toView:otherView];
+        }
+    }
+    
+    for (id<HeroAnimator>animator in self.animators) {
+        [animator applyState:targetState toView:view];
+    }
+}
+
+@end
+
+
+@implementation Hero (Observe)
+
+- (void)observeForProgressUpdateWithObserver:(id<HeroProgressUpdateObserver>)observer {
+    
+    if (self.progressUpdateObservers == nil) {
+        self.progressUpdateObservers = [NSMutableArray array];
+    }
+    
+    if (observer) {
+        [self.progressUpdateObservers addObject:observer];
+    }
+}
+
+@end
+
+
+@implementation Hero (Transition)
+- (void)start {
+    UIViewController *fvc = self.fromViewController;
+    UIViewController *tvc = self.toViewController;
+    if (fvc && tvc) {
+        [self closureProcessForHeroDelegate:fvc closure:^(id<HeroViewControllerDelegate> delegate) {
+            [delegate heroWillStartTransition];
+            [delegate heroWillStartAnimatingTo:tvc];
+        }];
+        [self closureProcessForHeroDelegate:tvc closure:^(id<HeroViewControllerDelegate> delegate) {
+            [delegate heroWillStartTransition];
+            [delegate heroWillStartAnimatingFrom:fvc];
+        }];
+    }
+    
+    NSMutableArray *plugins = [NSMutableArray array];
+    [self.enablePlugins enumerateObjectsUsingBlock:^(NSString * _Nonnull pluginType, NSUInteger idx, BOOL * _Nonnull stop) {
+        [plugins addObject:[[NSClassFromString(pluginType) alloc] init]];
+    }];
+    self.plugins = plugins;
+    
+    self.processors = @[
+                        [[IgnoreSubviewModifiersPreprocessor alloc] init],
+                        [[MatchPreprocessor alloc] init],
+                        [[SourcePreprocessor alloc] init],
+                        [[CascadePreprocessor alloc] init]
+                        ];
+    self.animators = @[
+                       [[HeroDefaultAnimator alloc] init]
+                       ];
+    
+    [self.plugins enumerateObjectsUsingBlock:^(HeroPlugin * _Nonnull plugin, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.processors addObject:plugin];
+        [self.animators addObject:plugin];
+    }];
+    
+    [self.transitionContainer setUserInteractionEnabled:NO];
+    
+    // a view to hold all the animating views
+    self.container = [[UIView alloc] initWithFrame:self.transitionContainer.bounds];
+    [self.transitionContainer addSubview:self.container];
+    
+    // take a snapshot to hide all the flashing that might happen
+    UIView *completeSnapshot = [self.fromView snapshotViewAfterScreenUpdates:YES];
+    [self.transitionContainer addSubview:completeSnapshot];
+    
+    // need to add fromView first, then insert toView under it. This eliminates the flash
+    [self.container addSubview:self.fromView];
+    [self.container insertSubview:self.toView belowSubview:self.fromView];
+    [self.container setBackgroundColor:self.toView.backgroundColor];
+    
+    [self.toView updateConstraints];
+    [self.toView setNeedsLayout];
+    [self.toView layoutIfNeeded];
+    
+    self.context = [[HeroContext alloc] initWithContainer:self.container fromView:self.fromView toView:self.toView];
+    
+    // ask each preprocessor to process
+    [self.processors enumerateObjectsUsingBlock:^(id<HeroPreprocessor>  _Nonnull processor, NSUInteger idx, BOOL * _Nonnull stop) {
+        [processor processFromViews:self.context.fromViews toViews:self.context.toViews];
+    }];
+    
+    __block BOOL skipDefaultAnimation = NO;
+    NSMutableArray *animatingViews = [NSMutableArray array];
+    NSMutableArray *currentFromViews = [NSMutableArray array];
+    NSMutableArray *currentToViews = [NSMutableArray array];
+    [self.animators enumerateObjectsUsingBlock:^(id<HeroAnimator>  _Nonnull animator, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.context.fromViews enumerateObjectsUsingBlock:^(UIView *  _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([animator canAnimateView:view appearing:NO]) {
+                [currentFromViews addObject:view];
+            }
+        }];
+        [self.context.toViews enumerateObjectsUsingBlock:^(UIView *  _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([animator canAnimateView:view appearing:YES]) {
+                [currentToViews addObject:view];
+            }
+        }];
+        
+        if ([currentFromViews firstObject] == self.fromView || [currentToViews firstObject] == self.toView) {
+            skipDefaultAnimation = YES;
+        }
+        [animatingViews addObject:@[currentFromViews, currentFromViews]];
+    }];
+    
+    if (!skipDefaultAnimation) {
+        // if no animator can animate toView & fromView, set the effect to fade // i.e. default effect
+        // TODO: How to translate?
+    }
+    
+    // wait for a frame if using navigation controller.
+    // a bug with navigation controller. the snapshot is not captured if animating immediately
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((self.presenting ? 0.02 : 0) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSArray *currentFromViews = [animatingViews firstObject];
+        NSArray *currentToViews = [animatingViews lastObject];
+        [currentFromViews enumerateObjectsUsingBlock:^(UIView * _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.context hideView:view];
+        }];
+        [currentToViews enumerateObjectsUsingBlock:^(UIView * _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.context hideView:view];
+        }];
+        
+        __block NSTimeInterval totalDuration = 0;
+        [self.animators enumerateObjectsUsingBlock:^(id<HeroAnimator>  _Nonnull animator, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSTimeInterval duration = [animator animateFromViews:currentFromViews[idx] toViews:currentToViews[idx]];
+            totalDuration = MAX(totalDuration, duration);
+        }];
+        
+        // we are done with setting up, so remove the covering snapshot
+        [completeSnapshot removeFromSuperview];
+        self.totalDuration = totalDuration;
+        [self completeAfter:totalDuration finishing:YES];
+    });
+}
+
+- (void)transitionFrom:(UIViewController *)from to:(UIViewController *)to inView:(UIView *)view completion:(void(^)())completion {
+    
+    if (self.transitioning) {
+        return;
+    }
+    
+    self.forceNotInteractive = YES;
+    self.inContainerController = NO;
+    self.presenting = YES;
+    self.transitionContainer = view;
+    self.fromViewController = from;
+    self.toViewController = to;
+    self.completionCallback = completion;
+    [self start];
+}
+
 - (void)completeAfter:(NSTimeInterval)after finishing:(BOOL)finishing {
     NSTimeInterval timePassed = (finishing ? self.progress : 1 - self.progress) * self.totalDuration;
     self.finishing = finishing;
@@ -214,10 +437,12 @@ typedef void(^HeroCompletionCallback)();
     [tContext completeTransition:finished];
     completion();
 }
+
 @end
 
+
 // delegate helper
-@implementation Hero (Delegate)
+@implementation Hero (DelegateHelper)
 
 - (void)closureProcessForHeroDelegate:(UIViewController *)vc closure:(void(^)(id<HeroViewControllerDelegate> delegate))closure {
     
@@ -245,8 +470,8 @@ typedef void(^HeroCompletionCallback)();
 @implementation Hero (PluginSupport)
 
 - (BOOL)isEnabledPlugin:(HeroPlugin *)plugin {
-    for (HeroPlugin *pluginInList in _enablePlugins) {
-        if (pluginInList == plugin) {
+    for (NSString *pluginName in _enablePlugins) {
+        if ([pluginName isEqualToString:NSStringFromClass([plugin class])]) {
             return YES;
         }
     }
@@ -255,13 +480,13 @@ typedef void(^HeroCompletionCallback)();
 
 - (void)enablePlugin:(HeroPlugin *)plugin {
     [self disablePlugin:plugin];
-    [_enablePlugins addObject:plugin];
+    [_enablePlugins addObject:NSStringFromClass([plugin class])];
 }
 
 - (void)disablePlugin:(HeroPlugin *)plugin {
-    for (HeroPlugin *pluginInList in _enablePlugins) {
-        if (pluginInList == plugin) {
-            [_enablePlugins removeObject:plugin];
+    for (NSString *pluginName in _enablePlugins) {
+        if ([pluginName isEqualToString:NSStringFromClass([plugin class])]) {
+            [_enablePlugins removeObject:pluginName];
             break;
         }
     }
@@ -281,6 +506,11 @@ typedef void(^HeroCompletionCallback)();
 @implementation Hero (AnimatedTransitioning)
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+    
+    if (self.transitioning) {
+        return;
+    }
+    
     self.transitionContext = transitionContext;
     self.fromViewController = self.fromViewController ? self.fromViewController : [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     self.toViewController = self.toViewController ? self.toViewController : [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
