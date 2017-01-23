@@ -8,6 +8,7 @@
 
 #import "HeroModifier.h"
 #import "HeroTargetState.h"
+#import "NSArray+HeroModifier.h"
 
 @interface HeroModifier ()
 
@@ -182,62 +183,62 @@
     }
     
     if ([name isEqualToString:@"position"]) {
-        modifier = [self position:CGPointMake([parameters[0] floatValue] ? [parameters[0] floatValue] : 0, [parameters[1] floatValue] ? [parameters[1] floatValue] : 0)];
+        modifier = [self position:CGPointMake([parameters getFloatAtIndex:0] ? [parameters getFloatAtIndex:0] : 0, [parameters getFloatAtIndex:1] ? [parameters getFloatAtIndex:1] : 0)];
     }
     
     if ([name isEqualToString:@"size"]) {
-        modifier = [self size:CGSizeMake([parameters[0] floatValue] ? [parameters[0] floatValue] : 0, [parameters[1] floatValue] ? [parameters[1] floatValue] : 0)];
+        modifier = [self size:CGSizeMake([parameters getFloatAtIndex:0] ? [parameters getFloatAtIndex:0] : 0, [parameters getFloatAtIndex:1] ? [parameters getFloatAtIndex:1] : 0)];
     }
     
     if ([name isEqualToString:@"scale"]) {
         if ([parameters count] == 1) {
-            modifier = [self scaleXY:[parameters[0] floatValue] ? [parameters[0] floatValue] : 1];
+            modifier = [self scaleXY:[parameters getFloatAtIndex:0] ? [parameters getFloatAtIndex:0] : 1];
         } else {
-            modifier = [self scaleX:[parameters[0] floatValue] ? [parameters[0] floatValue] : 1
-                                  Y:[parameters[1] floatValue] ? [parameters[1] floatValue] : 1
-                                  Z:[parameters[2] floatValue] ? [parameters[2] floatValue] : 1];
+            modifier = [self scaleX:[parameters getFloatAtIndex:0] ? [parameters getFloatAtIndex:0] : 1
+                                  Y:[parameters getFloatAtIndex:1] ? [parameters getFloatAtIndex:1] : 1
+                                  Z:[parameters getFloatAtIndex:2] ? [parameters getFloatAtIndex:2] : 1];
         }
     }
     
     if ([name isEqualToString:@"rotate"]) {
         if ([parameters count] == 1) {
-            modifier = [self rotateZ:[parameters[0] floatValue] ? [parameters[0] floatValue] : 0];
+            modifier = [self rotateZ:[parameters getFloatAtIndex:0] ? [parameters getFloatAtIndex:0] : 0];
         } else {
-            modifier = [self rotateX:[parameters[0] floatValue] ? [parameters[0] floatValue] : 0
-                                  Y:[parameters[1] floatValue] ? [parameters[1] floatValue] : 0
-                                  Z:[parameters[2] floatValue] ? [parameters[2] floatValue] : 0];
+            modifier = [self rotateX:[parameters getFloatAtIndex:0] ? [parameters getFloatAtIndex:0] : 0
+                                  Y:[parameters getFloatAtIndex:1] ? [parameters getFloatAtIndex:1] : 0
+                                  Z:[parameters getFloatAtIndex:2] ? [parameters getFloatAtIndex:2] : 0];
         }
     }
     
     if ([name isEqualToString:@"translate"]) {
-        modifier = [self translateX:[parameters[0] floatValue] ? [parameters[0] floatValue] : 0
-                              Y:[parameters[1] floatValue] ? [parameters[1] floatValue] : 0
-                              Z:[parameters[2] floatValue] ? [parameters[2] floatValue] : 0];
+        modifier = [self translateX:[parameters getFloatAtIndex:0] ? [parameters getFloatAtIndex:0] : 0
+                              Y:[parameters getFloatAtIndex:1] ? [parameters getFloatAtIndex:1] : 0
+                              Z:[parameters getFloatAtIndex:2] ? [parameters getFloatAtIndex:2] : 0];
     }
     
     if ([name isEqualToString:@"duration"]) {
-        NSTimeInterval duration = [parameters[0] doubleValue];
+        NSTimeInterval duration = [parameters getDoubleAtIndex:0];
         if (duration) {
             modifier = [self duration:duration];
         }
     }
     
     if ([name isEqualToString:@"delay"]) {
-        NSTimeInterval delay = [parameters[0] doubleValue];
+        NSTimeInterval delay = [parameters getDoubleAtIndex:0];
         if (delay) {
             modifier = [self delay:delay];
         }
     }
     
     if ([name isEqualToString:@"spring"]) {
-        modifier = [self spring:[parameters[0] floatValue] ? [parameters[0] floatValue] : 250 damping:[parameters[1] floatValue] ? [parameters[1] floatValue] : 30];
+        modifier = [self spring:[parameters getFloatAtIndex:0] ? [parameters getFloatAtIndex:0] : 250 damping:[parameters getFloatAtIndex:1] ? [parameters getFloatAtIndex:1] : 30];
     }
     
     if ([name isEqualToString:@"timingFunction"]) {
-        CGFloat c1 = [parameters[0] floatValue];
-        CGFloat c2 = [parameters[1] floatValue];
-        CGFloat c3 = [parameters[2] floatValue];
-        CGFloat c4 = [parameters[3] floatValue];
+        CGFloat c1 = [parameters getFloatAtIndex:0];
+        CGFloat c2 = [parameters getFloatAtIndex:1];
+        CGFloat c3 = [parameters getFloatAtIndex:2];
+        CGFloat c4 = [parameters getFloatAtIndex:3];
         if (c1 && c2 && c3 && c4) {
             modifier = [self timingFunction:[CAMediaTimingFunction functionWithControlPoints:c1 :c2 :c3 :c4]];
         } else if ([parameters[0] isKindOfClass:[NSString class]]) {
@@ -249,7 +250,7 @@
     }
     
     if ([name isEqualToString:@"arc"]) {
-        modifier = [self arc:[parameters[0] floatValue] ? [parameters[0] floatValue] : 1];
+        modifier = [self arc:[parameters getFloatAtIndex:0] ? [parameters getFloatAtIndex:0] : 1];
     }
     
     if ([name isEqualToString:@"cascade"]) {
@@ -257,7 +258,7 @@
         if ([parameters[1] isKindOfClass:[NSString class]) {
             cascadeDirection = [[CascadePreprocessor alloc] initWithString:parameters[1]];
         }
-        modifier = [self cascadeWithDelta:[parameters[0] floatValue] ? [parameters[0] floatValue] : 0.02 direction:cascadeDirection delayMatchedViews:[parameters[2] boolValue] ? [parameters[2] boolValue] : NO];
+        modifier = [self cascadeWithDelta:[parameters getFloatAtIndex:0] ? [parameters getFloatAtIndex:0] : 0.02 direction:cascadeDirection delayMatchedViews:[parameters[2] boolValue] ? [parameters[2] boolValue] : NO];
     }
     
     if ([name isEqualToString:@"source"]) {
@@ -268,15 +269,15 @@
     }
     
     if ([name isEqualToString:@"ignoreSubviewModifiers"]) {
-        modifier = [self ignoreSubviewModifiers:[parameters[0] boolValue] ? [parameters[0] boolValue] : NO];
+        modifier = [self ignoreSubviewModifiers:[parameters getBoolAtIndex:0] ? [parameters getBoolAtIndex:0] : NO];
     }
     
     if ([name isEqualToString:@"zPosition"]) {
-        modifier = [self zPosition:[parameters[0] floatValue]];
+        modifier = [self zPosition:[parameters getFloatAtIndex:0]];
     }
     
     if ([name isEqualToString:@"zPositionIfMatched"]) {
-        modifier = [self zPositionIfMatched:[parameters[0] floatValue]];
+        modifier = [self zPositionIfMatched:[parameters getFloatAtIndex:0]];
     }
     
     return modifier;

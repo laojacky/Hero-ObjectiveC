@@ -101,7 +101,7 @@ static NSMutableArray <Class> *_enablePlugins;
             }
         } else {
             for (HeroPlugin *plugin in self.plugins) {
-                if (plugin.requrePerFrameCallback) {
+                if (plugin.requirePerFrameCallback) {
                     [plugin seekToTime:timePassed];
                 }
             }
@@ -254,8 +254,8 @@ typedef void(^HeroUpdateBlock)();
     }
     
     NSMutableArray *plugins = [NSMutableArray array];
-    [_enablePlugins enumerateObjectsUsingBlock:^(NSString * _Nonnull pluginType, NSUInteger idx, BOOL * _Nonnull stop) {
-        [plugins addObject:[[NSClassFromString(pluginType) alloc] init]];
+    [_enablePlugins enumerateObjectsUsingBlock:^(Class _Nonnull pluginClass, NSUInteger idx, BOOL * _Nonnull stop) {
+        [plugins addObject:[[pluginClass alloc] init]];
     }];
     self.plugins = plugins;
     

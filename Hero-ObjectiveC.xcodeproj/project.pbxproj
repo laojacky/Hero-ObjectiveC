@@ -28,6 +28,7 @@
 		64F07A071E348C5C005331E0 /* HeroTargetState.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A061E348C5C005331E0 /* HeroTargetState.m */; };
 		64F07A0A1E348C7A005331E0 /* HeroTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A091E348C7A005331E0 /* HeroTypes.m */; };
 		64F07A0D1E348EDD005331E0 /* BasePreprocessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A0C1E348EDD005331E0 /* BasePreprocessor.m */; };
+		64F07A101E3608AF005331E0 /* NSArray+HeroModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A0F1E3608AF005331E0 /* NSArray+HeroModifier.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,8 @@
 		64F07A091E348C7A005331E0 /* HeroTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeroTypes.m; path = Sources/HeroTypes.m; sourceTree = "<group>"; };
 		64F07A0B1E348EDD005331E0 /* BasePreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasePreprocessor.h; path = Sources/BasePreprocessor.h; sourceTree = "<group>"; };
 		64F07A0C1E348EDD005331E0 /* BasePreprocessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BasePreprocessor.m; path = Sources/BasePreprocessor.m; sourceTree = "<group>"; };
+		64F07A0E1E3608AF005331E0 /* NSArray+HeroModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+HeroModifier.h"; path = "Sources/NSArray+HeroModifier.h"; sourceTree = "<group>"; };
+		64F07A0F1E3608AF005331E0 /* NSArray+HeroModifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+HeroModifier.m"; path = "Sources/NSArray+HeroModifier.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +196,8 @@
 			children = (
 				64F079F61E348759005331E0 /* UIKit+Hero.h */,
 				64F079F71E348759005331E0 /* UIKit+Hero.m */,
+				64F07A0E1E3608AF005331E0 /* NSArray+HeroModifier.h */,
+				64F07A0F1E3608AF005331E0 /* NSArray+HeroModifier.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 				64F079FB1E348AA2005331E0 /* HeroModifier.m in Sources */,
 				64F07A0D1E348EDD005331E0 /* BasePreprocessor.m in Sources */,
 				64F079991E346D94005331E0 /* main.m in Sources */,
+				64F07A101E3608AF005331E0 /* NSArray+HeroModifier.m in Sources */,
 				64F07A0A1E348C7A005331E0 /* HeroTypes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -493,6 +499,7 @@
 				64F079C31E346D94005331E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
