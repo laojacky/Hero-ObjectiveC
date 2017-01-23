@@ -25,8 +25,6 @@ static BOOL useShortDescription = YES;
 
 - (void)setCity:(City *)city {
     _city = city;
-    
-    NSString *name = city.name;
 }
 
 @end
