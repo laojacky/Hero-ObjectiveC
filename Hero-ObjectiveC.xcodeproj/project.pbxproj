@@ -30,6 +30,7 @@
 		64F07A0D1E348EDD005331E0 /* BasePreprocessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A0C1E348EDD005331E0 /* BasePreprocessor.m */; };
 		64F07A101E3608AF005331E0 /* NSArray+HeroModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A0F1E3608AF005331E0 /* NSArray+HeroModifier.m */; };
 		64F07A131E360CD4005331E0 /* CALayer+Hero.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A121E360CD4005331E0 /* CALayer+Hero.m */; };
+		64F07A161E360E3C005331E0 /* CAMediaTimingFunction+Hero.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A151E360E3C005331E0 /* CAMediaTimingFunction+Hero.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,8 @@
 		64F07A0F1E3608AF005331E0 /* NSArray+HeroModifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+HeroModifier.m"; path = "Sources/NSArray+HeroModifier.m"; sourceTree = "<group>"; };
 		64F07A111E360CD4005331E0 /* CALayer+Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CALayer+Hero.h"; path = "Sources/CALayer+Hero.h"; sourceTree = "<group>"; };
 		64F07A121E360CD4005331E0 /* CALayer+Hero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CALayer+Hero.m"; path = "Sources/CALayer+Hero.m"; sourceTree = "<group>"; };
+		64F07A141E360E3C005331E0 /* CAMediaTimingFunction+Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CAMediaTimingFunction+Hero.h"; path = "Sources/CAMediaTimingFunction+Hero.h"; sourceTree = "<group>"; };
+		64F07A151E360E3C005331E0 /* CAMediaTimingFunction+Hero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CAMediaTimingFunction+Hero.m"; path = "Sources/CAMediaTimingFunction+Hero.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +206,8 @@
 				64F07A0F1E3608AF005331E0 /* NSArray+HeroModifier.m */,
 				64F07A111E360CD4005331E0 /* CALayer+Hero.h */,
 				64F07A121E360CD4005331E0 /* CALayer+Hero.m */,
+				64F07A141E360E3C005331E0 /* CAMediaTimingFunction+Hero.h */,
+				64F07A151E360E3C005331E0 /* CAMediaTimingFunction+Hero.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -301,6 +306,7 @@
 				64F079F81E348759005331E0 /* UIKit+Hero.m in Sources */,
 				64F07A131E360CD4005331E0 /* CALayer+Hero.m in Sources */,
 				64F0799F1E346D94005331E0 /* InitialViewController.m in Sources */,
+				64F07A161E360E3C005331E0 /* CAMediaTimingFunction+Hero.m in Sources */,
 				64F07A011E348BCA005331E0 /* HeroContext.m in Sources */,
 				64F079CD1E347BC1005331E0 /* UIKit+HeroExamples.m in Sources */,
 				64F07A071E348C5C005331E0 /* HeroTargetState.m in Sources */,
