@@ -218,7 +218,10 @@
     [self.viewAlphas removeAllObjects];
 }
 
-+ (NSMutableArray <UIView *>*)processViewTreeWithView:(UIView *)view container:(UIView *)container idMap:(NSMutableArray *)idMap stateMap:(NSMutableArray *)stateMap {
++ (NSMutableArray <UIView *>*)processViewTreeWithView:(UIView *)view
+                                            container:(UIView *)container
+                                                idMap:(NSMutableArray *)idMap
+                                             stateMap:(NSMutableArray *)stateMap {
     NSMutableArray <UIView *> *rtn = [NSMutableArray array];
     if (!CGRectEqualToRect(CGRectIntersection([container convertRect:view.bounds fromView:view], container.bounds), CGRectNull)) {
         rtn = [@[view] mutableCopy];
@@ -238,4 +241,44 @@
     
     return rtn;
 }
+@end
+
+
+@implementation HeroContext (TargetState)
+
+- (HeroTargetState *)stateOfView:(UIView *)view {
+    __block BOOL contain = NO;
+    __block NSInteger index = 0;
+    [self.targetStates enumerateObjectsUsingBlock:^(NSArray * _Nonnull pair, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (pair[0] == view) {
+            index = idx;
+            contain = YES;
+            *stop = YES;
+        }
+    }];
+    
+    if (contain) {
+        return [self.targetStates objectAtIndex:index][1];
+    }
+    return nil;
+}
+
+- (void)setState:(HeroTargetState *)state toView:(UIView *)view {
+    __block BOOL contain = NO;
+    __block NSInteger index = 0;
+    [self.targetStates enumerateObjectsUsingBlock:^(NSArray * _Nonnull pair, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (pair[0] == view && pair[1] == state) {
+            index = idx;
+            contain = YES;
+            *stop = YES;
+        }
+    }];
+    
+    if (contain) {
+        [self.targetStates removeObjectAtIndex:index];
+    }
+    
+    [self.targetStates addObject:@[view, state]];
+}
+
 @end

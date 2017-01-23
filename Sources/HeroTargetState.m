@@ -11,7 +11,9 @@
 
 @interface HeroTargetState ()
 
-@property (nonatomic, copy) NSMutableDictionary *custom;
+// @[   @{@"modifier1" : modifier1},
+//      @{@"modifier2" : modifier2} ]
+@property (nonatomic, copy) NSMutableArray <NSMutableDictionary*> *custom;
 
 @end
 
@@ -31,14 +33,38 @@
 }
 
 - (id)customItemOfKey:(NSString *)key {
-    return self.custom[key];
+    __block id modifier = nil;
+    [self.custom enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj objectForKey:key]) {
+            modifier = [obj objectForKey:key];
+        }
+    }];
+    
+    return modifier;
 }
 
 - (void)setCustomItemOfKey:(NSString *)key value:(id)value {
     if (!self.custom) {
-        self.custom = [NSMutableDictionary dictionary];
+        self.custom = [NSMutableArray array];
     }
-    [self.custom setValue:value forKey:key];
+    
+    __block BOOL contain = NO;
+    __block NSInteger index = 0;
+    [self.custom enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj objectForKey:key]) {
+            contain = YES;
+            index = idx;
+            *stop = YES;
+        }
+    }];
+    
+    if (contain) {
+        [self.custom removeObjectAtIndex:index];
+    }
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:value forKey:key];
+    [self.custom addObject:dict];
 }
 
 @end

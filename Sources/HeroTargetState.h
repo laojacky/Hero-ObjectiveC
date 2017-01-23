@@ -26,10 +26,11 @@
 @property (nonatomic, assign) CGFloat zPosition;
 @property (nonatomic, assign) CGFloat zPositionIfMatched;
 @property (nonatomic, copy) NSString *source;
-@property (nonatomic, copy) NSArray *cascade;  //[@(NSTimeInterval), CascadeDirection, @(BOOL)], represents cascade timeinterval, direction and delayMatchedViews
+@property (nonatomic, copy) NSArray *cascade;       //[@(NSTimeInterval), CascadeDirection, @(BOOL)], represents cascade timeinterval, direction and delayMatchedViews
+
 @property (nonatomic, assign) BOOL ignoreSubviewModifiers;
 
-@property (nonatomic, copy, readonly) NSMutableDictionary *custom;
+@property (nonatomic, copy, readonly) NSMutableArray <NSMutableDictionary*> *custom;
 
 - (instancetype)initWithModifiers:(NSArray *)modifiers;
 
