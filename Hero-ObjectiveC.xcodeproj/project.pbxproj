@@ -29,6 +29,7 @@
 		64F07A0A1E348C7A005331E0 /* HeroTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A091E348C7A005331E0 /* HeroTypes.m */; };
 		64F07A0D1E348EDD005331E0 /* BasePreprocessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A0C1E348EDD005331E0 /* BasePreprocessor.m */; };
 		64F07A101E3608AF005331E0 /* NSArray+HeroModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A0F1E3608AF005331E0 /* NSArray+HeroModifier.m */; };
+		64F07A131E360CD4005331E0 /* CALayer+Hero.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A121E360CD4005331E0 /* CALayer+Hero.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,8 @@
 		64F07A0C1E348EDD005331E0 /* BasePreprocessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BasePreprocessor.m; path = Sources/BasePreprocessor.m; sourceTree = "<group>"; };
 		64F07A0E1E3608AF005331E0 /* NSArray+HeroModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+HeroModifier.h"; path = "Sources/NSArray+HeroModifier.h"; sourceTree = "<group>"; };
 		64F07A0F1E3608AF005331E0 /* NSArray+HeroModifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+HeroModifier.m"; path = "Sources/NSArray+HeroModifier.m"; sourceTree = "<group>"; };
+		64F07A111E360CD4005331E0 /* CALayer+Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CALayer+Hero.h"; path = "Sources/CALayer+Hero.h"; sourceTree = "<group>"; };
+		64F07A121E360CD4005331E0 /* CALayer+Hero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CALayer+Hero.m"; path = "Sources/CALayer+Hero.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +201,8 @@
 				64F079F71E348759005331E0 /* UIKit+Hero.m */,
 				64F07A0E1E3608AF005331E0 /* NSArray+HeroModifier.h */,
 				64F07A0F1E3608AF005331E0 /* NSArray+HeroModifier.m */,
+				64F07A111E360CD4005331E0 /* CALayer+Hero.h */,
+				64F07A121E360CD4005331E0 /* CALayer+Hero.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 				64F079E81E348217005331E0 /* City.m in Sources */,
 				64F07A041E348C41005331E0 /* HeroPlugin.m in Sources */,
 				64F079F81E348759005331E0 /* UIKit+Hero.m in Sources */,
+				64F07A131E360CD4005331E0 /* CALayer+Hero.m in Sources */,
 				64F0799F1E346D94005331E0 /* InitialViewController.m in Sources */,
 				64F07A011E348BCA005331E0 /* HeroContext.m in Sources */,
 				64F079CD1E347BC1005331E0 /* UIKit+HeroExamples.m in Sources */,
