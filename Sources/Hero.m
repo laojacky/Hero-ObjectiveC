@@ -14,7 +14,7 @@
 
 typedef void(^HeroCompletionCallback)();
 
-static NSMutableArray <NSString *> *_enablePlugins;
+static NSMutableArray <Class> *_enablePlugins;
 
 @interface Hero ()
 
@@ -206,8 +206,8 @@ typedef void(^HeroUpdateBlock)();
         return;
     }
     
-    HeroTargetState targetState = [HeroTargetState stateForModifiers:modifiers];
-    UIView *otherView = [self.context.pairedView pairedViewForView:view];
+    HeroTargetState *targetState = [[HeroTargetState alloc] initWithModifiers:modifiers];
+    UIView *otherView = [self.context pairedViewForView:view];
     if (otherView) {
         for (id<HeroAnimator>animator in self.animators) {
             [animator applyState:targetState toView:otherView];
@@ -469,24 +469,24 @@ typedef void(^HeroUpdateBlock)();
 // plugin support
 @implementation Hero (PluginSupport)
 
-+ (BOOL)isEnabledPlugin:(HeroPlugin *)plugin {
-    for (NSString *pluginName in _enablePlugins) {
-        if ([pluginName isEqualToString:NSStringFromClass([plugin class])]) {
++ (BOOL)isEnabledPlugin:(Class)plugin {
+    for (Class plugin in _enablePlugins) {
+        if ([NSStringFromClass(plugin) isEqualToString:NSStringFromClass([plugin class])]) {
             return YES;
         }
     }
     return nil;
 }
 
-+ (void)enablePlugin:(HeroPlugin *)plugin {
++ (void)enablePlugin:(Class)plugin {
     [self disablePlugin:plugin];
-    [_enablePlugins addObject:NSStringFromClass([plugin class])];
+    [_enablePlugins addObject:plugin];
 }
 
-+ (void)disablePlugin:(HeroPlugin *)plugin {
-    for (NSString *pluginName in _enablePlugins) {
-        if ([pluginName isEqualToString:NSStringFromClass([plugin class])]) {
-            [_enablePlugins removeObject:pluginName];
++ (void)disablePlugin:(Class)plugin {
+    for (Class plugin in _enablePlugins) {
+        if ([NSStringFromClass(plugin) isEqualToString:NSStringFromClass([plugin class])]) {
+            [_enablePlugins removeObject:plugin];
             break;
         }
     }

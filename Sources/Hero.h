@@ -100,11 +100,11 @@
 
 @interface Hero (PluginSupport)
 
-+ (BOOL)isEnabledPlugin:(HeroPlugin *)plugin;
++ (BOOL)isEnabledPlugin:(Class)plugin;
 
-+ (void)enablePlugin:(HeroPlugin *)plugin;
++ (void)enablePlugin:(Class)plugin;
 
-+ (void)disablePlugin:(HeroPlugin *)plugin;
++ (void)disablePlugin:(Class)plugin;
 
 @end
 
