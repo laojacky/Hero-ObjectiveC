@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface HeroContext : NSObject
+
+@property (nonatomic, copy) NSMutableArray *fromViews;
+@property (nonatomic, copy) NSMutableArray *toViews;
+
+- (instancetype)initWithContainer:(UIView *)container fromView:(UIView *)fromView toView:(UIView *)toView;
+- (void)hideView:(UIView *)view;
 
 @end

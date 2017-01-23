@@ -202,7 +202,7 @@ static struct PreviousDelegates prevDelegates = {@"heroPreviousNavigationDelegat
         UIView *container = self.view.superview;
         id <UIViewControllerTransitioningDelegate> oldTransitionDelegate = [next transitioningDelegate];
         next.isHeroEnabled = YES;
-        [[Hero shared] transitionFrom:self to:next in:container completion:^{
+        [[Hero shared] transitionFrom:self to:next inView:container completion:^{
             if (![oldTransitionDelegate isKindOfClass:[Hero class]]) {
                 next.isHeroEnabled = NO;
                 next.transitioningDelegate = oldTransitionDelegate;
