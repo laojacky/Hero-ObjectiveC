@@ -14,6 +14,8 @@
 
 typedef void(^HeroCompletionCallback)();
 
+static NSMutableArray <NSString *> *_enablePlugins;
+
 @interface Hero ()
 
 @property (nonatomic, weak) UIViewController *toViewController;
@@ -49,8 +51,6 @@ typedef void(^HeroCompletionCallback)();
 @property (nonatomic, copy) NSMutableArray <id <HeroAnimator>> *animators;
 @property (nonatomic, copy) NSMutableArray <HeroPlugin *> *plugins;
 
-@property (nonatomic, copy) NSMutableArray <NSString *> *enablePlugins; //Here's the HeroPlugin.Type in swift version, contains the metatypes of Heroplugin; Here we using the class name to refer plugin
-
 @end
 
 @implementation Hero
@@ -71,7 +71,7 @@ typedef void(^HeroCompletionCallback)();
         self.processors = [NSMutableArray array];
         self.animators = [NSMutableArray array];
         self.plugins = [NSMutableArray array];
-        self.enablePlugins = [NSMutableArray array];
+        _enablePlugins = [NSMutableArray array];
     }
     return self;
 }
@@ -254,7 +254,7 @@ typedef void(^HeroUpdateBlock)();
     }
     
     NSMutableArray *plugins = [NSMutableArray array];
-    [self.enablePlugins enumerateObjectsUsingBlock:^(NSString * _Nonnull pluginType, NSUInteger idx, BOOL * _Nonnull stop) {
+    [_enablePlugins enumerateObjectsUsingBlock:^(NSString * _Nonnull pluginType, NSUInteger idx, BOOL * _Nonnull stop) {
         [plugins addObject:[[NSClassFromString(pluginType) alloc] init]];
     }];
     self.plugins = plugins;
@@ -469,7 +469,7 @@ typedef void(^HeroUpdateBlock)();
 // plugin support
 @implementation Hero (PluginSupport)
 
-- (BOOL)isEnabledPlugin:(HeroPlugin *)plugin {
++ (BOOL)isEnabledPlugin:(HeroPlugin *)plugin {
     for (NSString *pluginName in _enablePlugins) {
         if ([pluginName isEqualToString:NSStringFromClass([plugin class])]) {
             return YES;
@@ -478,12 +478,12 @@ typedef void(^HeroUpdateBlock)();
     return nil;
 }
 
-- (void)enablePlugin:(HeroPlugin *)plugin {
++ (void)enablePlugin:(HeroPlugin *)plugin {
     [self disablePlugin:plugin];
     [_enablePlugins addObject:NSStringFromClass([plugin class])];
 }
 
-- (void)disablePlugin:(HeroPlugin *)plugin {
++ (void)disablePlugin:(HeroPlugin *)plugin {
     for (NSString *pluginName in _enablePlugins) {
         if ([pluginName isEqualToString:NSStringFromClass([plugin class])]) {
             [_enablePlugins removeObject:pluginName];

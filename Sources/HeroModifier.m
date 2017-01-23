@@ -27,13 +27,13 @@
 
 @implementation HeroModifier (BasicModifiers)
 
-- (HeroModifier *)position:(CGPoint)position {
++ (HeroModifier *)position:(CGPoint)position {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.position = position;
     }];
 }
 
-- (HeroModifier *)size:(CGSize)size {
++ (HeroModifier *)size:(CGSize)size {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.size = size;
     }];
@@ -43,13 +43,13 @@
 
 @implementation HeroModifier (TransformModifiers)
 
-- (HeroModifier *)transform:(CATransform3D)t {
++ (HeroModifier *)transform:(CATransform3D)t {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.transform = t;
     }];
 }
 
-- (HeroModifier *)perspective:(CGFloat)perspective {
++ (HeroModifier *)perspective:(CGFloat)perspective {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         CATransform3D transform = targetState.transform;
         transform.m34 = 1.0 / -perspective;
@@ -57,24 +57,24 @@
     }];
 }
 
-- (HeroModifier *)scaleX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z {
++ (HeroModifier *)scaleX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.transform = CATransform3DScale(targetState.transform, x, y, z);
         
     }];
 }
 
-- (HeroModifier *)scaleXY:(CGFloat)xy {
++ (HeroModifier *)scaleXY:(CGFloat)xy {
     return [self scaleX:xy Y:xy Z:1.0];
 }
 
-- (HeroModifier *)translateX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z {
++ (HeroModifier *)translateX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.transform = CATransform3DTranslate(targetState.transform, x, y, z);
     }];
 }
 
-- (HeroModifier *)rotateX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z {
++ (HeroModifier *)rotateX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.transform = CATransform3DRotate(targetState.transform, x, 1, 0, 0);
         targetState.transform = CATransform3DRotate(targetState.transform, y, 0, 1, 0);
@@ -82,7 +82,7 @@
     }];
 }
 
-- (HeroModifier *)rotateZ:(CGFloat)z {
++ (HeroModifier *)rotateZ:(CGFloat)z {
     return [self rotateX:0 Y:0 Z:z];
 }
 
@@ -91,25 +91,25 @@
 
 @implementation HeroModifier (TimingMidifiers)
 
-- (HeroModifier *)duration:(NSTimeInterval)duration {
++ (HeroModifier *)duration:(NSTimeInterval)duration {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.duration = duration;
     }];
 }
 
-- (HeroModifier *)delay:(NSTimeInterval)delay {
++ (HeroModifier *)delay:(NSTimeInterval)delay {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.delay = delay;
     }];
 }
 
-- (HeroModifier *)timingFunction:(CAMediaTimingFunction*)timingFunction {
++ (HeroModifier *)timingFunction:(CAMediaTimingFunction*)timingFunction {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.timingFunction = timingFunction;
     }];
 }
 
-- (HeroModifier *)spring:(CGFloat)stiffness damping:(CGFloat)damping NS_AVAILABLE_IOS(9_0) {
++ (HeroModifier *)spring:(CGFloat)stiffness damping:(CGFloat)damping NS_AVAILABLE_IOS(9_0) {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         //Use two dimension array as tuple
         targetState.spring = @[@(stiffness), @(damping)];
@@ -121,49 +121,49 @@
 
 @implementation HeroModifier (OtherModifiers)
 
-- (HeroModifier *)ignoreSubviewModifiers {
++ (HeroModifier *)ignoreSubviewModifiers {
     return [self ignoreSubviewModifiers:NO];
 }
 
-- (HeroModifier *)arc {
++ (HeroModifier *)arc {
     return [self arc:1];
 }
 
-- (HeroModifier *)cascade {
++ (HeroModifier *)cascade {
     return [self cascadeWithDelta:0.02 direction:CascadeDirectionTopToBottom delayMatchedViews:NO];
 }
 
-- (HeroModifier *)zPosition:(CGFloat)zPosition {
++ (HeroModifier *)zPosition:(CGFloat)zPosition {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.zPosition = zPosition;
     }];
 }
 
-- (HeroModifier *)zPositionIfMatched:(CGFloat)zPositionIfMatched {
++ (HeroModifier *)zPositionIfMatched:(CGFloat)zPositionIfMatched {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.zPositionIfMatched = zPositionIfMatched;
     }];
 }
 
-- (HeroModifier *)ignoreSubviewModifiers:(BOOL)recursive {
++ (HeroModifier *)ignoreSubviewModifiers:(BOOL)recursive {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.ignoreSubviewModifiers = recursive;
     }];
 }
 
-- (HeroModifier *)source:(NSString *)heroID {
++ (HeroModifier *)source:(NSString *)heroID {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.source = heroID;
     }];
 }
 
-- (HeroModifier *)arc:(CGFloat)intensity {
++ (HeroModifier *)arc:(CGFloat)intensity {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.arc = intensity;
     }];
 }
 
-- (HeroModifier *)cascadeWithDelta:(NSTimeInterval)delta direction:(CascadeDirection *)direction delayMatchedViews:(BOOL)delayMatchedViews {
++ (HeroModifier *)cascadeWithDelta:(NSTimeInterval)delta direction:(CascadeDirection *)direction delayMatchedViews:(BOOL)delayMatchedViews {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         //Use three dimension array as tuple
         targetState.cascade = @[@(delta), direction, @(delayMatchedViews)];
@@ -175,7 +175,7 @@
 
 @implementation HeroModifier (HeroModifierString)
 
-- (HeroModifier *)modifierFromName:(NSString *)name parameters:(NSArray <NSString *>*)parameters {
++ (HeroModifier *)modifierFromName:(NSString *)name parameters:(NSArray <NSString *>*)parameters {
     HeroModifier *modifier;
     if ([name isEqualToString:@"fade"]) {
         modifier = [[HeroModifier alloc] initWithApplyFunction:fade];
