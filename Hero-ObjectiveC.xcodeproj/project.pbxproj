@@ -31,6 +31,10 @@
 		64F07A101E3608AF005331E0 /* NSArray+HeroModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A0F1E3608AF005331E0 /* NSArray+HeroModifier.m */; };
 		64F07A131E360CD4005331E0 /* CALayer+Hero.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A121E360CD4005331E0 /* CALayer+Hero.m */; };
 		64F07A161E360E3C005331E0 /* CAMediaTimingFunction+Hero.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A151E360E3C005331E0 /* CAMediaTimingFunction+Hero.m */; };
+		64F07A221E36EDE7005331E0 /* CascadePreprocessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A211E36EDE7005331E0 /* CascadePreprocessor.m */; };
+		64F07A251E36FC80005331E0 /* IgnoreSubviewModifiersPreprocessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A241E36FC80005331E0 /* IgnoreSubviewModifiersPreprocessor.m */; };
+		64F07A281E370198005331E0 /* MatchPreprocessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A271E370198005331E0 /* MatchPreprocessor.m */; };
+		64F07A2B1E370446005331E0 /* SourcePreprocessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A2A1E370446005331E0 /* SourcePreprocessor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +80,14 @@
 		64F07A121E360CD4005331E0 /* CALayer+Hero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CALayer+Hero.m"; path = "Sources/CALayer+Hero.m"; sourceTree = "<group>"; };
 		64F07A141E360E3C005331E0 /* CAMediaTimingFunction+Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CAMediaTimingFunction+Hero.h"; path = "Sources/CAMediaTimingFunction+Hero.h"; sourceTree = "<group>"; };
 		64F07A151E360E3C005331E0 /* CAMediaTimingFunction+Hero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CAMediaTimingFunction+Hero.m"; path = "Sources/CAMediaTimingFunction+Hero.m"; sourceTree = "<group>"; };
+		64F07A201E36EDE7005331E0 /* CascadePreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CascadePreprocessor.h; path = Sources/CascadePreprocessor.h; sourceTree = "<group>"; };
+		64F07A211E36EDE7005331E0 /* CascadePreprocessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CascadePreprocessor.m; path = Sources/CascadePreprocessor.m; sourceTree = "<group>"; };
+		64F07A231E36FC80005331E0 /* IgnoreSubviewModifiersPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IgnoreSubviewModifiersPreprocessor.h; path = Sources/IgnoreSubviewModifiersPreprocessor.h; sourceTree = "<group>"; };
+		64F07A241E36FC80005331E0 /* IgnoreSubviewModifiersPreprocessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IgnoreSubviewModifiersPreprocessor.m; path = Sources/IgnoreSubviewModifiersPreprocessor.m; sourceTree = "<group>"; };
+		64F07A261E370198005331E0 /* MatchPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MatchPreprocessor.h; path = Sources/MatchPreprocessor.h; sourceTree = "<group>"; };
+		64F07A271E370198005331E0 /* MatchPreprocessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MatchPreprocessor.m; path = Sources/MatchPreprocessor.m; sourceTree = "<group>"; };
+		64F07A291E370446005331E0 /* SourcePreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SourcePreprocessor.h; path = Sources/SourcePreprocessor.h; sourceTree = "<group>"; };
+		64F07A2A1E370446005331E0 /* SourcePreprocessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SourcePreprocessor.m; path = Sources/SourcePreprocessor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +205,14 @@
 			children = (
 				64F07A0B1E348EDD005331E0 /* BasePreprocessor.h */,
 				64F07A0C1E348EDD005331E0 /* BasePreprocessor.m */,
+				64F07A201E36EDE7005331E0 /* CascadePreprocessor.h */,
+				64F07A211E36EDE7005331E0 /* CascadePreprocessor.m */,
+				64F07A231E36FC80005331E0 /* IgnoreSubviewModifiersPreprocessor.h */,
+				64F07A241E36FC80005331E0 /* IgnoreSubviewModifiersPreprocessor.m */,
+				64F07A261E370198005331E0 /* MatchPreprocessor.h */,
+				64F07A271E370198005331E0 /* MatchPreprocessor.m */,
+				64F07A291E370446005331E0 /* SourcePreprocessor.h */,
+				64F07A2A1E370446005331E0 /* SourcePreprocessor.m */,
 			);
 			name = Preprocessors;
 			sourceTree = "<group>";
@@ -304,8 +324,10 @@
 				64F079E81E348217005331E0 /* City.m in Sources */,
 				64F07A041E348C41005331E0 /* HeroPlugin.m in Sources */,
 				64F079F81E348759005331E0 /* UIKit+Hero.m in Sources */,
+				64F07A221E36EDE7005331E0 /* CascadePreprocessor.m in Sources */,
 				64F07A131E360CD4005331E0 /* CALayer+Hero.m in Sources */,
 				64F0799F1E346D94005331E0 /* InitialViewController.m in Sources */,
+				64F07A281E370198005331E0 /* MatchPreprocessor.m in Sources */,
 				64F07A161E360E3C005331E0 /* CAMediaTimingFunction+Hero.m in Sources */,
 				64F07A011E348BCA005331E0 /* HeroContext.m in Sources */,
 				64F079CD1E347BC1005331E0 /* UIKit+HeroExamples.m in Sources */,
@@ -316,8 +338,10 @@
 				64F079FB1E348AA2005331E0 /* HeroModifier.m in Sources */,
 				64F07A0D1E348EDD005331E0 /* BasePreprocessor.m in Sources */,
 				64F079991E346D94005331E0 /* main.m in Sources */,
+				64F07A251E36FC80005331E0 /* IgnoreSubviewModifiersPreprocessor.m in Sources */,
 				64F07A101E3608AF005331E0 /* NSArray+HeroModifier.m in Sources */,
 				64F07A0A1E348C7A005331E0 /* HeroTypes.m in Sources */,
+				64F07A2B1E370446005331E0 /* SourcePreprocessor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

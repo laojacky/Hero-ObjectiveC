@@ -7,7 +7,6 @@
 //
 
 #import "HeroModifier.h"
-#import "HeroTargetState.h"
 #import "NSArray+HeroModifier.h"
 
 @interface HeroModifier ()
@@ -164,10 +163,10 @@
     }];
 }
 
-+ (HeroModifier *)cascadeWithDelta:(NSTimeInterval)delta direction:(CascadeDirection *)direction delayMatchedViews:(BOOL)delayMatchedViews {
++ (HeroModifier *)cascadeWithDelta:(NSTimeInterval)delta direction:(CascadeDirection)direction delayMatchedViews:(BOOL)delayMatchedViews {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         //Use three dimension array as tuple
-        targetState.cascade = @[@(delta), direction, @(delayMatchedViews)];
+        targetState.cascade = @[@(delta), @(direction), @(delayMatchedViews)];
     }];
 }
 
@@ -254,9 +253,10 @@
     }
     
     if ([name isEqualToString:@"cascade"]) {
-        CascadeDirection *cascadeDirection = CascadeDirectionTopToBottom;
-        if ([parameters[1] isKindOfClass:[NSString class]) {
-            cascadeDirection = [[CascadePreprocessor alloc] initWithString:parameters[1]];
+        CascadeDirection cascadeDirection = CascadeDirectionTopToBottom;
+        if ([parameters[1] isKindOfClass:[NSString class]]) {
+            CascadePreprocessor * cascadePreprocessor = [[CascadePreprocessor alloc] initWithDirectionString:parameters[1]];
+            cascadeDirection = cascadePreprocessor.direction;
         }
         modifier = [self cascadeWithDelta:[parameters getFloatAtIndex:0] ? [parameters getFloatAtIndex:0] : 0.02 direction:cascadeDirection delayMatchedViews:[parameters[2] boolValue] ? [parameters[2] boolValue] : NO];
     }

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "HeroTargetState.h"
+#import "CascadePreprocessor.h"
 
 @class HeroTargetState;
 
@@ -201,7 +203,7 @@ static HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
  - direction: cascade direction
  - delayMatchedViews: whether or not to delay matched subviews until all cascading animation have started
  */
-+ (HeroModifier *)cascadeWithDelta:(NSTimeInterval)delta direction:(CascadeDirection *)direction delayMatchedViews:(BOOL)delayMatchedViews;
++ (HeroModifier *)cascadeWithDelta:(NSTimeInterval)delta direction:(CascadeDirection)direction delayMatchedViews:(BOOL)delayMatchedViews;
 
 @end
 

@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "HeroTypes.h"
-
-@class HeroContext;
+#import "HeroContext.h"
+#import "HeroTargetState.h"
 
 @interface BasePreprocessor : NSObject <HeroPreprocessor>
 

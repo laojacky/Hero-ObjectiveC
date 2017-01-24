@@ -26,9 +26,12 @@
 @implementation HeroContext
 
 - (instancetype)initWithContainer:(UIView *)container fromView:(UIView *)fromView toView:(UIView *)toView {
-    self.fromViews = [HeroContext processViewTreeWithView:fromView container:container idMap:self.heroIDToSourceView stateMap:self.targetStates];
-    self.toViews = [HeroContext processViewTreeWithView:toView container:container idMap:self.heroIDToSourceView stateMap:self.targetStates];
-    self.container = container;
+    if (self = [super init]) {
+        self.fromViews = [HeroContext processViewTreeWithView:fromView container:container idMap:self.heroIDToSourceView stateMap:self.targetStates];
+        self.toViews = [HeroContext processViewTreeWithView:toView container:container idMap:self.heroIDToSourceView stateMap:self.targetStates];
+        self.container = container;
+    }
+    return self;
 }
 
 - (UIView *)sourceViewForHeroID:(NSString *)heroID {
@@ -274,11 +277,13 @@
         }
     }];
     
-    if (contain) {
+    if (contain || state == nil) {
         [self.targetStates removeObjectAtIndex:index];
     }
     
-    [self.targetStates addObject:@[view, state]];
+    if (state) {
+        [self.targetStates addObject:@[view, state]];
+    }
 }
 
 @end

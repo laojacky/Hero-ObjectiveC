@@ -73,7 +73,10 @@
 @implementation HeroTargetState (ExpressibleByArrayLiteral)
 
 - (instancetype)initWithArrayLiteralElements:(NSArray <HeroModifier *> *)elements {
-    [self appendContentsOfModifiers:elements];
+    if (self = [super init]) {
+        [self appendContentsOfModifiers:elements];
+    }
+    return self;
 }
 
 @end
