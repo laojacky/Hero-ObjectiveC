@@ -10,14 +10,14 @@
 
 @implementation CALayer (Hero)
 
-- (NSArray *)animations {
+- (NSArray <NSDictionary *> *)animations {
     
     NSArray *keys = [self animationKeys];
     NSMutableArray *array = [NSMutableArray array];
     
     if (keys && [keys count]) {
         [keys enumerateObjectsUsingBlock:^(NSString * _Nonnull key, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSDictionary *dic = @{key : [[self.animations valueForKey:key] copy]};
+            NSDictionary *dic = @{key : [[self animationForKey:key] copy]};
             [array addObject:dic];
         }];
     }

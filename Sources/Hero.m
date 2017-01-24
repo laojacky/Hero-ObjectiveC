@@ -9,6 +9,14 @@
 #import "Hero.h"
 #import "HeroContext.h"
 #import "HeroPlugin.h"
+
+#import "CascadePreprocessor.h"
+#import "IgnoreSubviewModifiersPreprocessor.h"
+#import "SourcePreprocessor.h"
+#import "MatchPreprocessor.h"
+
+#import "HeroDefaultAnimator.h"
+
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
 
@@ -182,7 +190,7 @@ typedef void(^HeroUpdateBlock)();
     
     NSTimeInterval maxTime = 0;
     for (id<HeroAnimator>animator in self.animators) {
-        maxTime = MAX(maxTime, [animator resumeTime:self.progress * self.totalDuration reverse:NO]);
+        maxTime = MAX(maxTime, [animator resumeForTime:self.progress * self.totalDuration reverse:NO]);
     }
     [self completeAfter:maxTime finishing:YES];
 }
@@ -195,7 +203,7 @@ typedef void(^HeroUpdateBlock)();
     
     NSTimeInterval maxTime = 0;
     for (id<HeroAnimator>animator in self.animators) {
-        maxTime = MAX(maxTime, [animator resumeTime:self.progress * self.totalDuration reverse:YES]);
+        maxTime = MAX(maxTime, [animator resumeForTime:self.progress * self.totalDuration reverse:YES]);
     }
     [self completeAfter:maxTime finishing:NO];
 }
@@ -259,12 +267,12 @@ typedef void(^HeroUpdateBlock)();
     }];
     self.plugins = plugins;
     
-    self.processors = @[
-                        [[IgnoreSubviewModifiersPreprocessor alloc] init],
-                        [[MatchPreprocessor alloc] init],
-                        [[SourcePreprocessor alloc] init],
-                        [[CascadePreprocessor alloc] init]
-                        ];
+    NSMutableArray <id<HeroPreprocessor>> *processorsArray = [[NSMutableArray alloc] initWithObjects:[[IgnoreSubviewModifiersPreprocessor alloc] init],
+                                                              [[MatchPreprocessor alloc] init],
+                                                              [[SourcePreprocessor alloc] init],
+                                                              [[CascadePreprocessor alloc] init], nil];
+    self.processors = processorsArray;
+    
     self.animators = @[
                        [[HeroDefaultAnimator alloc] init]
                        ];
@@ -452,15 +460,19 @@ typedef void(^HeroUpdateBlock)();
     }
     
     UINavigationController *navigationController = (UINavigationController *)vc;
-    delegate = (id <HeroViewControllerDelegate>)navigationController.topViewController;
-    if (navigationController && [delegate conformsToProtocol:@protocol(HeroViewControllerDelegate)]) {
-        closure(delegate);
+    if ([vc isKindOfClass:[navigationController class]]) {
+        delegate = (id <HeroViewControllerDelegate>)navigationController.topViewController;
+        if (navigationController && [delegate conformsToProtocol:@protocol(HeroViewControllerDelegate)]) {
+            closure(delegate);
+        }
     }
     
     UITabBarController *tabBarController = (UITabBarController *)vc;
-    delegate = (id <HeroViewControllerDelegate>)tabBarController.viewControllers[tabBarController.selectedIndex];
-    if ([delegate conformsToProtocol:@protocol(HeroViewControllerDelegate)]) {
-        closure(delegate);
+    if ([vc isKindOfClass:[UITabBarController class]]) {
+        delegate = (id <HeroViewControllerDelegate>)tabBarController.viewControllers[tabBarController.selectedIndex];
+        if ([delegate conformsToProtocol:@protocol(HeroViewControllerDelegate)]) {
+            closure(delegate);
+        }
     }
 }
 

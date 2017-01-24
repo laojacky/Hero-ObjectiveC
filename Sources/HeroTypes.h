@@ -24,7 +24,7 @@
 - (void)clean;
 
 - (void)seekToTime:(NSTimeInterval)timePassed;
-- (NSTimeInterval)resumeTime:(NSTimeInterval)timePassed reverse:(BOOL)reverse;
+- (NSTimeInterval)resumeForTime:(NSTimeInterval)timePassed reverse:(BOOL)reverse;
 - (void)applyState:(HeroTargetState *)state toView:(UIView *)view;
 
 @end

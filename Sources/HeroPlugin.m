@@ -35,7 +35,7 @@
     return;
 }
 
-- (NSTimeInterval)resumeTime:(NSTimeInterval)timePassed reverse:(BOOL)reverse {
+- (NSTimeInterval)resumeForTime:(NSTimeInterval)timePassed reverse:(BOOL)reverse {
     return 0;
 }
 

@@ -95,7 +95,7 @@
  - timePassed: will be the same value since last `seekTo`
  - reverse: a boolean value indicating whether or not the animation should reverse
  */
-- (NSTimeInterval)resumeTime:(NSTimeInterval)timePassed reverse:(BOOL)reverse;
+- (NSTimeInterval)resumeForTime:(NSTimeInterval)timePassed reverse:(BOOL)reverse;
 
 /**
  For supporting interactive animation only.

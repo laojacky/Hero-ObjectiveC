@@ -10,6 +10,7 @@
 
 @interface CALayer (Hero)
 
-@property (nonatomic, copy, readonly) NSArray *animations;
+// @[@{Key : CAAnimation}, ...]
+@property (nonatomic, copy, readonly) NSArray <NSDictionary *> *animations;
 
 @end

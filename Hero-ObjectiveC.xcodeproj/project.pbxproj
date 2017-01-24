@@ -35,6 +35,8 @@
 		64F07A251E36FC80005331E0 /* IgnoreSubviewModifiersPreprocessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A241E36FC80005331E0 /* IgnoreSubviewModifiersPreprocessor.m */; };
 		64F07A281E370198005331E0 /* MatchPreprocessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A271E370198005331E0 /* MatchPreprocessor.m */; };
 		64F07A2B1E370446005331E0 /* SourcePreprocessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A2A1E370446005331E0 /* SourcePreprocessor.m */; };
+		64F07A2E1E370F18005331E0 /* HeroDefaultAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A2D1E370F18005331E0 /* HeroDefaultAnimator.m */; };
+		64F07A311E3727DC005331E0 /* HeroDefaultAnimatorViewContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F07A301E3727DC005331E0 /* HeroDefaultAnimatorViewContext.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +90,10 @@
 		64F07A271E370198005331E0 /* MatchPreprocessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MatchPreprocessor.m; path = Sources/MatchPreprocessor.m; sourceTree = "<group>"; };
 		64F07A291E370446005331E0 /* SourcePreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SourcePreprocessor.h; path = Sources/SourcePreprocessor.h; sourceTree = "<group>"; };
 		64F07A2A1E370446005331E0 /* SourcePreprocessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SourcePreprocessor.m; path = Sources/SourcePreprocessor.m; sourceTree = "<group>"; };
+		64F07A2C1E370F18005331E0 /* HeroDefaultAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeroDefaultAnimator.h; path = Sources/HeroDefaultAnimator.h; sourceTree = "<group>"; };
+		64F07A2D1E370F18005331E0 /* HeroDefaultAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeroDefaultAnimator.m; path = Sources/HeroDefaultAnimator.m; sourceTree = "<group>"; };
+		64F07A2F1E3727DC005331E0 /* HeroDefaultAnimatorViewContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeroDefaultAnimatorViewContext.h; path = Sources/HeroDefaultAnimatorViewContext.h; sourceTree = "<group>"; };
+		64F07A301E3727DC005331E0 /* HeroDefaultAnimatorViewContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeroDefaultAnimatorViewContext.m; path = Sources/HeroDefaultAnimatorViewContext.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +248,10 @@
 		64F079F41E3486FF005331E0 /* Animator */ = {
 			isa = PBXGroup;
 			children = (
+				64F07A2C1E370F18005331E0 /* HeroDefaultAnimator.h */,
+				64F07A2D1E370F18005331E0 /* HeroDefaultAnimator.m */,
+				64F07A2F1E3727DC005331E0 /* HeroDefaultAnimatorViewContext.h */,
+				64F07A301E3727DC005331E0 /* HeroDefaultAnimatorViewContext.m */,
 			);
 			name = Animator;
 			sourceTree = "<group>";
@@ -329,6 +339,7 @@
 				64F0799F1E346D94005331E0 /* InitialViewController.m in Sources */,
 				64F07A281E370198005331E0 /* MatchPreprocessor.m in Sources */,
 				64F07A161E360E3C005331E0 /* CAMediaTimingFunction+Hero.m in Sources */,
+				64F07A2E1E370F18005331E0 /* HeroDefaultAnimator.m in Sources */,
 				64F07A011E348BCA005331E0 /* HeroContext.m in Sources */,
 				64F079CD1E347BC1005331E0 /* UIKit+HeroExamples.m in Sources */,
 				64F07A071E348C5C005331E0 /* HeroTargetState.m in Sources */,
@@ -342,6 +353,7 @@
 				64F07A101E3608AF005331E0 /* NSArray+HeroModifier.m in Sources */,
 				64F07A0A1E348C7A005331E0 /* HeroTypes.m in Sources */,
 				64F07A2B1E370446005331E0 /* SourcePreprocessor.m in Sources */,
+				64F07A311E3727DC005331E0 /* HeroDefaultAnimatorViewContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
