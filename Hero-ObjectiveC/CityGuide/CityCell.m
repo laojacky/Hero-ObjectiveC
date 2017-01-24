@@ -8,6 +8,7 @@
 
 #import "CityCell.h"
 #import "City.h"
+#import "UIKit+Hero.h"
 
 static BOOL useShortDescription = YES;
 
@@ -24,7 +25,19 @@ static BOOL useShortDescription = YES;
 @implementation CityCell
 
 - (void)setCity:(City *)city {
+    
+    if (!city) {
+        return;
+    }
     _city = city;
+    NSString *name = city.name;
+    
+    self.heroID = name;
+    self.heroModifiers = @[[HeroModifier modifierFromName:@"zPositionIfMatched" parameters:@[@(3)]]];
+    
+    self.nameLabel.text = name;
+    self.imageView.image = city.image;
+    self.descriptionLabel.text = useShortDescription ? city.shortDescription : city.description;
 }
 
 @end

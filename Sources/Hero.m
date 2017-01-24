@@ -549,7 +549,7 @@ typedef void(^HeroUpdateBlock)();
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     self.presenting = YES;
     self.fromViewController = self.fromViewController ? self.fromViewController : presenting;
-    self.toViewController = self.toViewController ? self.toViewController : presenting;
+    self.toViewController = self.toViewController ? self.toViewController : presented;
     return self;
 }
 
