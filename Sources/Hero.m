@@ -337,18 +337,22 @@ typedef void(^HeroUpdateBlock)();
     // wait for a frame if using navigation controller.
     // a bug with navigation controller. the snapshot is not captured if animating immediately
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((self.presenting ? 0.02 : 0) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NSArray *currentFromViews = [animatingViews firstObject];
-        NSArray *currentToViews = [animatingViews lastObject];
-        [currentFromViews enumerateObjectsUsingBlock:^(UIView * _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
-            [self.context hideView:view];
-        }];
-        [currentToViews enumerateObjectsUsingBlock:^(UIView * _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
-            [self.context hideView:view];
+        
+        [animatingViews enumerateObjectsUsingBlock:^(NSArray * _Nonnull pair, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSArray *curentFromViews = pair[0];
+            NSArray *currentToViews = pair[1];
+            for (UIView *view in curentFromViews) {
+                [self.context hideView:view];
+            }
+            
+            for (UIView *view in currentToViews) {
+                [self.context hideView:view];
+            }
         }];
         
         __block NSTimeInterval totalDuration = 0;
         [self.animators enumerateObjectsUsingBlock:^(id<HeroAnimator>  _Nonnull animator, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSTimeInterval duration = [animator animateFromViews:currentFromViews[idx] toViews:currentToViews[idx]];
+            NSTimeInterval duration = [animator animateFromViews:animatingViews[idx][0] toViews:animatingViews[idx][1]];
             totalDuration = MAX(totalDuration, duration);
         }];
         
@@ -459,7 +463,7 @@ typedef void(^HeroUpdateBlock)();
     }
     
     UINavigationController *navigationController = (UINavigationController *)vc;
-    if ([vc isKindOfClass:[navigationController class]]) {
+    if ([vc isKindOfClass:[UINavigationController class]]) {
         delegate = (id <HeroViewControllerDelegate>)navigationController.topViewController;
         if (navigationController && [delegate conformsToProtocol:@protocol(HeroViewControllerDelegate)]) {
             closure(delegate);
