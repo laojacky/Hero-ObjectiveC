@@ -273,9 +273,8 @@ typedef void(^HeroUpdateBlock)();
                                                               [[CascadePreprocessor alloc] init], nil];
     self.processors = processorsArray;
     
-    self.animators = @[
-                       [[HeroDefaultAnimator alloc] init]
-                       ];
+    NSMutableArray <id<HeroAnimator>> *animatorArray = [[NSMutableArray alloc] initWithObjects:[[HeroDefaultAnimator alloc] init], nil];
+    self.animators = animatorArray;
     
     [self.plugins enumerateObjectsUsingBlock:^(HeroPlugin * _Nonnull plugin, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.processors addObject:plugin];

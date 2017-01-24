@@ -14,18 +14,6 @@
 
 @interface HeroDefaultAnimatorViewContext ()
 
-@property (nonatomic, weak) HeroDefaultAnimator *animator;
-@property (nonatomic, strong) UIView *snapshot;
-@property (nonatomic, copy) NSMutableArray <NSMutableDictionary *>*state;   //@[{NSString : @[obj1, obj2]}, ...]
-@property (nonatomic, assign) NSTimeInterval duration;
-@property (nonatomic, strong) HeroTargetState *targetState;
-@property (nonatomic, copy) NSMutableArray *defaultTiming;                  //@[@(NSTimeInterval), CAMediaTimingFunction]
-
-// computed
-@property (nonatomic, strong, readonly) CALayer *contentLayer;
-@property (nonatomic, assign, readonly) NSTimeInterval currentTime;
-@property (nonatomic, strong, readonly) UIView *container;
-
 @end
 
 @implementation HeroDefaultAnimatorViewContext
