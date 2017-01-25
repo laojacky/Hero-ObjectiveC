@@ -22,17 +22,16 @@
             tvState.source = heroID;
             
             HeroTargetState *fvState = tvState;
-            tvState.opacity = 0;
+            tvState.opacity = @(0);
             
-//TODO: cannot set opcacity to nil, how to do this?
-//            if (([fv isKindOfClass:[UILabel class]] && !fv.isOpaque) || tv.alpha < 1) {
-//                // cross fade if fromView is a label or if toView is transparent
-//                fvState.opacity = 0;
-//            } else {
-//                fvState.opacity = nil;
-//            }
+            if (([fv isKindOfClass:[UILabel class]] && !fv.isOpaque) || tv.alpha < 1) {
+                // cross fade if fromView is a label or if toView is transparent
+                fvState.opacity = @(0);
+            } else {
+                fvState.opacity = nil;
+            }
             
-            fvState.opacity = 0;
+            fvState.opacity = @(0);
             
             [self.context setState:tvState toView:tv];
             [self.context setState:fvState toView:fv];

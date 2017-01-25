@@ -47,7 +47,7 @@ const HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
 
 @implementation HeroModifier (TransformModifiers)
 
-+ (HeroModifier *)transform:(CATransform3D)t {
++ (HeroModifier *)transform:(NSValue *)t {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.transform = t;
     }];
@@ -55,15 +55,15 @@ const HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
 
 + (HeroModifier *)perspective:(CGFloat)perspective {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
-        CATransform3D transform = targetState.transform;
+        CATransform3D transform = [targetState.transform CATransform3DValue];
         transform.m34 = 1.0 / -perspective;
-        targetState.transform = transform;
+        targetState.transform = [NSValue valueWithCATransform3D:transform];
     }];
 }
 
 + (HeroModifier *)scaleX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
-        targetState.transform = CATransform3DScale(targetState.transform, x, y, z);
+        targetState.transform = [NSValue valueWithCATransform3D:CATransform3DScale([targetState.transform CATransform3DValue], x, y, z)];
         
     }];
 }
@@ -74,15 +74,15 @@ const HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
 
 + (HeroModifier *)translateX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
-        targetState.transform = CATransform3DTranslate(targetState.transform, x, y, z);
+        targetState.transform = [NSValue valueWithCATransform3D:CATransform3DTranslate([targetState.transform CATransform3DValue], x, y, z)];
     }];
 }
 
 + (HeroModifier *)rotateX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
-        targetState.transform = CATransform3DRotate(targetState.transform, x, 1, 0, 0);
-        targetState.transform = CATransform3DRotate(targetState.transform, y, 0, 1, 0);
-        targetState.transform = CATransform3DRotate(targetState.transform, z, 0, 0, 1);
+        targetState.transform = [NSValue valueWithCATransform3D:CATransform3DRotate([targetState.transform CATransform3DValue], x, 1, 0, 0)];
+        targetState.transform = [NSValue valueWithCATransform3D:CATransform3DRotate([targetState.transform CATransform3DValue], y, 0, 1, 0)];
+        targetState.transform = [NSValue valueWithCATransform3D:CATransform3DRotate([targetState.transform CATransform3DValue], z, 0, 0, 1)];
     }];
 }
 
@@ -126,7 +126,7 @@ const HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
 @implementation HeroModifier (OtherModifiers)
 
 + (HeroModifier *)ignoreSubviewModifiers {
-    return [self ignoreSubviewModifiers:NO];
+    return [self ignoreSubviewModifiers:@(NO)];
 }
 
 + (HeroModifier *)arc {
@@ -149,7 +149,7 @@ const HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
     }];
 }
 
-+ (HeroModifier *)ignoreSubviewModifiers:(BOOL)recursive {
++ (HeroModifier *)ignoreSubviewModifiers:(NSNumber *)recursive {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.ignoreSubviewModifiers = recursive;
     }];
@@ -273,7 +273,7 @@ const HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
     }
     
     if ([name isEqualToString:@"ignoreSubviewModifiers"]) {
-        modifier = [self ignoreSubviewModifiers:[parameters getBoolAtIndex:0] ? [parameters getBoolAtIndex:0] : NO];
+        modifier = [self ignoreSubviewModifiers:@([parameters getBoolAtIndex:0]) ? @([parameters getBoolAtIndex:0]) : @(NO)];
     }
     
     if ([name isEqualToString:@"zPosition"]) {

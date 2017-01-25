@@ -53,7 +53,7 @@ extern const HeroModifierApplyBlock fade;;
  - Parameters:
  - t: the CATransform3D object
  */
-+ (HeroModifier *)transform:(CATransform3D)t;
++ (HeroModifier *)transform:(NSValue *)t;
 
 /**
  Set the perspective on the transform. use in combination with the rotate modifier.
@@ -178,7 +178,7 @@ extern const HeroModifierApplyBlock fade;;
  - Parameters:
  - recursive: if false, will only ignore direct subviews' modifiers. default false.
  */
-+ (HeroModifier *)ignoreSubviewModifiers:(BOOL)recursive;
++ (HeroModifier *)ignoreSubviewModifiers:(NSNumber *)recursive;
 
 /**
  transition from/to the state of the view with matching heroID

@@ -23,6 +23,8 @@
         self.animator = animator;
         self.snapshot = snapshot;
         self.targetState = targetState;
+        self.state = [NSMutableArray array];
+        self.defaultTiming = [NSMutableArray array];
         
         NSMutableArray <NSDictionary *> *disappeared = [self viewStateForTargetState:targetState];
         
@@ -181,13 +183,17 @@
     [rtn addObject:dic];
     dic = @{@"position" : [NSValue valueWithCGPoint:targetState.position]};
     [rtn addObject:dic];
-    dic = @{@"opacity" : @(targetState.opacity)};
-    [rtn addObject:dic];
+    if (targetState.opacity) {
+        dic = @{@"opacity" :  targetState.opacity};
+        [rtn addObject:dic];
+    }
     dic = @{@"cornerRadius" : @(targetState.cornerRadius)};
     [rtn addObject:dic];
-    dic = @{@"transform" : [NSValue valueWithCATransform3D:targetState.transform]};
-    [rtn addObject:dic];
-    
+    if (targetState.transform) {
+        dic = @{@"transform" : targetState.transform};
+        [rtn addObject:dic];
+    }
+
     return rtn;
 }
 

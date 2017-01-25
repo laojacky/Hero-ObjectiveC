@@ -57,9 +57,8 @@
 }
 
 - (BOOL)canAnimateView:(UIView *)view appearing:(BOOL)appear {
-//    HeroTargetState *state = [self.context stateOfView:view];
-//    return !CGPointEqualToPoint(CGPointZero, state.position) || !CGSizeEqualToSize(CGSizeZero, state.size) || !CATransform3DEqualToTransform(state.transform, CATransform3DIdentity) || state.cornerRadius != 0 || state.opacity != 0;
-    return YES;
+    HeroTargetState *state = [self.context stateOfView:view];
+    return !CGPointEqualToPoint(CGPointZero, state.position) || !CGSizeEqualToSize(CGSizeZero, state.size) || state.transform || state.cornerRadius != 0 || state.opacity;
 }
 
 - (NSTimeInterval)animateFromViews:(NSArray *)fromviews toViews:(NSArray *)toviews {
@@ -84,7 +83,10 @@
 
 - (void)animateView:(UIView *)view appearing:(BOOL)appear {
     UIView *snapshot = [self.context snapshotViewForView:view];
-    HeroDefaultAnimatorViewContext *viewContext = [[HeroDefaultAnimatorViewContext alloc] initWithAnimator:self snapshot:snapshot targetState:[self.context stateOfView:view] appearing:appear];
+    HeroDefaultAnimatorViewContext *viewContext = [[HeroDefaultAnimatorViewContext alloc] initWithAnimator:self
+                                                                                                  snapshot:snapshot
+                                                                                               targetState:[self.context stateOfView:view]
+                                                                                                 appearing:appear];
     
     __block BOOL contain = NO;
     __block NSInteger index = 0;

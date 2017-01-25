@@ -48,7 +48,7 @@ static NSMutableArray <Class> *_enablePlugins;
 
 @property (nonatomic, assign) NSTimeInterval totalDuration;
 @property (nonatomic, assign) NSTimeInterval duration;
-@property (nonatomic, assign) NSTimeInterval beginTime;
+@property (nonatomic, strong) NSNumber *beginTime;      //@(Double)
 
 @property (nonatomic, assign) BOOL finishing;
 @property (nonatomic, assign) BOOL inContainerController;
@@ -102,12 +102,12 @@ static NSMutableArray <Class> *_enablePlugins;
 - (void)setProgress:(CGFloat)progress {
     _progress = progress;
     
-    if (self.transitioning && self.progress != progress) {
-        [self.transitionContext updateInteractiveTransition:progress];
+    if (self.transitioning && _progress != progress) {
+        [self.transitionContext updateInteractiveTransition:_progress];
         NSArray *progressUpdateObservers = self.progressUpdateObservers;
         if (progressUpdateObservers) {
             for (id<HeroProgressUpdateObserver>observer in progressUpdateObservers) {
-                [observer heroDidUpdateProgress:progress];
+                [observer heroDidUpdateProgress:_progress];
             }
         }
         
@@ -126,15 +126,18 @@ static NSMutableArray <Class> *_enablePlugins;
     }
 }
 
-- (void)setBeginTime:(NSTimeInterval)beginTime {
+- (void)setBeginTime:(NSNumber *)beginTime {
     _beginTime = beginTime;
-    if (self.displayLink == nil) {
-        self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(displayUpdate:)];
-        [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
-    } else {
-        [self.displayLink setPaused:YES];
-        [self.displayLink removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
-        self.displayLink = nil;
+    
+    if (_beginTime) {
+        if (self.displayLink == nil) {
+            self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(displayUpdate:)];
+            [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+        } else {
+            [self.displayLink setPaused:YES];
+            [self.displayLink removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+            self.displayLink = nil;
+        }
     }
 }
 
@@ -150,7 +153,7 @@ static NSMutableArray <Class> *_enablePlugins;
 
 - (void)displayUpdate:(CADisplayLink *)link {
     if (self.transitioning && self.duration > 0) {
-        NSTimeInterval beginTime = self.beginTime;
+        NSTimeInterval beginTime = [self.beginTime doubleValue];
         NSTimeInterval timePassed = CACurrentMediaTime() - beginTime;
         
         if (timePassed > self.duration) {
@@ -394,7 +397,7 @@ typedef void(^HeroUpdateBlock)();
     NSTimeInterval timePassed = (finishing ? self.progress : 1 - self.progress) * self.totalDuration;
     self.finishing = finishing;
     self.duration = after + timePassed;
-    self.beginTime = CACurrentMediaTime() - timePassed;
+    self.beginTime = @(CACurrentMediaTime() - timePassed);
 }
 
 - (void)complete:(BOOL)finished {

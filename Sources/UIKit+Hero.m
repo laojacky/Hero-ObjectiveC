@@ -194,7 +194,7 @@ static struct PreviousDelegates prevDelegates = {@"heroPreviousNavigationDelegat
         }
         
         if (navigationController.isHeroEnabled) {
-            [Hero shared].forceNotInteractive = YES;
+            [Hero shared].forceNotInteractive = @(YES);
         }
         [navigationController setViewControllers:vcs animated:YES];
     } else {

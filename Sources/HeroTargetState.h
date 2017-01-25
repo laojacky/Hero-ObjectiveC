@@ -13,11 +13,11 @@
 
 @interface HeroTargetState : NSObject
 
-@property (nonatomic, assign) CGFloat opacity;
+@property (nonatomic, strong) NSNumber *opacity;      //@(CGFloat)
 @property (nonatomic, assign) CGFloat cornerRadius;
 @property (nonatomic, assign) CGPoint position;
 @property (nonatomic, assign) CGSize size;
-@property (nonatomic, assign) CATransform3D transform;
+@property (nonatomic, strong) NSValue *transform;       //@(CATransform3D)
 @property (nonatomic, copy) NSArray <NSNumber *> *spring;    //[@(CGFloat), @(CGFloat)], represents stiffness and damping
 @property (nonatomic, assign) NSTimeInterval delay;
 @property (nonatomic, assign) NSTimeInterval duration;
@@ -28,7 +28,7 @@
 @property (nonatomic, copy) NSString *source;
 @property (nonatomic, copy) NSArray *cascade;       //[@(NSTimeInterval), @(CascadeDirection), @(BOOL)], represents cascade timeinterval, direction and delayMatchedViews
 
-@property (nonatomic, assign) BOOL ignoreSubviewModifiers;
+@property (nonatomic, strong) NSNumber *ignoreSubviewModifiers;  //@(BOOL)
 
 @property (nonatomic, copy, readonly) NSMutableArray <NSMutableDictionary*> *custom;
 

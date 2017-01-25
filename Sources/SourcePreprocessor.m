@@ -51,7 +51,7 @@
     }
     
     if (!CATransform3DEqualToTransform(view.layer.transform, targetView.layer.transform)) {
-        state.transform = targetView.layer.transform;
+        state.transform = [NSValue valueWithCATransform3D:targetView.layer.transform];
     }
     
     [self.context setState:state toView:view];

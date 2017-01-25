@@ -17,29 +17,30 @@
 
 - (void)processViews:(NSArray <UIView *> *)views {
     [views enumerateObjectsUsingBlock:^(UIView * _Nonnull view, NSUInteger viewIndex, BOOL * _Nonnull stop) {
-        BOOL recursive = [self.context stateOfView:view].ignoreSubviewModifiers;
-        UIView *parentView = view;
-        if ([view isKindOfClass:[UITableView class]]) {
-            UIView *wrapperView = [view.subviews firstObject];
-            if (wrapperView) {
-                parentView = wrapperView;
-            }
-        }
-        
+        NSNumber *recursive = [self.context stateOfView:view].ignoreSubviewModifiers;
         if (recursive) {
-            for (NSInteger i = viewIndex + 1; i < views.count; i ++) {
-                UIView *childView = views[i];
-                if (childView.superview == view.superview) {
-                    break;
+            UIView *parentView = view;
+            if ([view isKindOfClass:[UITableView class]]) {
+                UIView *wrapperView = [view.subviews firstObject];
+                if (wrapperView) {
+                    parentView = wrapperView;
                 }
-                [self.context setState:nil toView:childView];
             }
-        } else {
-            for (UIView *subview in parentView.subviews) {
-                [self.context setState:nil toView:subview];
+            
+            if ([recursive boolValue]) {
+                for (NSInteger i = viewIndex + 1; i < views.count; i ++) {
+                    UIView *childView = views[i];
+                    if (childView.superview == view.superview) {
+                        break;
+                    }
+                    [self.context setState:nil toView:childView];
+                }
+            } else {
+                for (UIView *subview in parentView.subviews) {
+                    [self.context setState:nil toView:subview];
+                }
             }
         }
-        
     }];
 }
 

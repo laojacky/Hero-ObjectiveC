@@ -239,7 +239,7 @@
             [idMap addObject:@[view.heroID, view]];
         }
         if (view.heroModifiers && [view.heroModifiers count]) {
-            [stateMap addObject:@[view, view.heroModifiers]];
+            [stateMap addObject:@[view, [[HeroTargetState alloc] initWithModifiers:view.heroModifiers]]];
         }
     } else {
         rtn = [@[] mutableCopy];
