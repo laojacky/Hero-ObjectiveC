@@ -9,6 +9,7 @@
 #import "Hero.h"
 #import "HeroContext.h"
 #import "HeroPlugin.h"
+#import "HeroModifier.h"
 
 #import "CascadePreprocessor.h"
 #import "IgnoreSubviewModifiersPreprocessor.h"
@@ -80,6 +81,12 @@ static NSMutableArray <Class> *_enablePlugins;
         self.animators = [NSMutableArray array];
         self.plugins = [NSMutableArray array];
         _enablePlugins = [NSMutableArray array];
+        self.presenting = YES;
+        self.forceNotInteractive = NO;
+        self.totalDuration = 0;
+        self.duration= 0;
+        self.finishing = YES;
+        self.inContainerController = NO;
     }
     return self;
 }
@@ -93,6 +100,8 @@ static NSMutableArray <Class> *_enablePlugins;
 }
 
 - (void)setProgress:(CGFloat)progress {
+    _progress = progress;
+    
     if (self.transitioning && self.progress != progress) {
         [self.transitionContext updateInteractiveTransition:progress];
         NSArray *progressUpdateObservers = self.progressUpdateObservers;
@@ -308,7 +317,7 @@ typedef void(^HeroUpdateBlock)();
     }];
     
     __block BOOL skipDefaultAnimation = NO;
-    NSMutableArray *animatingViews = [NSMutableArray array];
+    NSMutableArray *animatingViews = [NSMutableArray array];    //@[ @[fromviews, toviews], ... ]
     NSMutableArray *currentFromViews = [NSMutableArray array];
     NSMutableArray *currentToViews = [NSMutableArray array];
     [self.animators enumerateObjectsUsingBlock:^(id<HeroAnimator>  _Nonnull animator, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -326,12 +335,14 @@ typedef void(^HeroUpdateBlock)();
         if ([currentFromViews firstObject] == self.fromView || [currentToViews firstObject] == self.toView) {
             skipDefaultAnimation = YES;
         }
-        [animatingViews addObject:@[currentFromViews, currentFromViews]];
+        [animatingViews addObject:@[currentFromViews, currentToViews]];
     }];
     
     if (!skipDefaultAnimation) {
         // if no animator can animate toView & fromView, set the effect to fade // i.e. default effect
-        // TODO: How to translate?
+        HeroModifier *fadeModifier = [[HeroModifier alloc] initWithApplyFunction:fade];
+        [self.context setState:[[HeroTargetState alloc] initWithModifiers:@[fadeModifier]] toView:self.toView];
+        [((NSMutableArray *)[animatingViews firstObject][1]) insertObject:self.toView atIndex:0];
     }
     
     // wait for a frame if using navigation controller.

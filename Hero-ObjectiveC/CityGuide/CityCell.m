@@ -26,10 +26,12 @@
 
 - (void)setCity:(City *)city {
     
+    _city = city;
+    
     if (!city) {
         return;
     }
-    _city = city;
+    
     NSString *name = city.name;
     
     self.heroID = name;

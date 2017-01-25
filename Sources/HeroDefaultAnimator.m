@@ -17,6 +17,13 @@
 
 @implementation HeroDefaultAnimator
 
+- (NSMutableArray *)viewContexts {
+    if (!_viewContexts) {
+        _viewContexts = [NSMutableArray array];
+    }
+    return _viewContexts;
+}
+
 - (HeroContext *)context {
     return [Hero shared].context;
 }
@@ -50,8 +57,9 @@
 }
 
 - (BOOL)canAnimateView:(UIView *)view appearing:(BOOL)appear {
-    HeroTargetState *state = [self.context stateOfView:view];
-    return !CGPointEqualToPoint(CGPointZero, state.position) || !CGSizeEqualToSize(CGSizeZero, state.size) || !CATransform3DEqualToTransform(state.transform, CATransform3DIdentity) || state.cornerRadius != 0 || state.opacity != 0;
+//    HeroTargetState *state = [self.context stateOfView:view];
+//    return !CGPointEqualToPoint(CGPointZero, state.position) || !CGSizeEqualToSize(CGSizeZero, state.size) || !CATransform3DEqualToTransform(state.transform, CATransform3DIdentity) || state.cornerRadius != 0 || state.opacity != 0;
+    return YES;
 }
 
 - (NSTimeInterval)animateFromViews:(NSArray *)fromviews toViews:(NSArray *)toviews {
@@ -59,11 +67,11 @@
     
     // animate
     for (UIView *v in fromviews) {
-        [self canAnimateView:v appearing:NO];
+        [self animateView:v appearing:NO];
     }
     
     for (UIView *v in toviews) {
-        [self canAnimateView:v appearing:YES];
+        [self animateView:v appearing:YES];
     }
     
     [self.viewContexts enumerateObjectsUsingBlock:^(NSMutableArray * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -90,6 +98,8 @@
     
     if (contain) {
         [self.viewContexts setObject:[@[view, viewContext] mutableCopy] atIndexedSubscript:index];
+    } else {
+        [self.viewContexts addObject:[@[view, viewContext] mutableCopy]];
     }
 }
 

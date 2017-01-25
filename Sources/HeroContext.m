@@ -25,8 +25,15 @@
 
 @implementation HeroContext
 
+- (NSMutableArray<NSArray *> *)targetStates {
+    if (!_targetStates) {
+        _targetStates = [NSMutableArray array];
+    }
+    return _targetStates;
+}
+
 - (instancetype)initWithContainer:(UIView *)container fromView:(UIView *)fromView toView:(UIView *)toView {
-    if (self = [super init]) {
+    if ([self init]) {
         self.fromViews = [HeroContext processViewTreeWithView:fromView container:container idMap:self.heroIDToSourceView stateMap:self.targetStates];
         self.toViews = [HeroContext processViewTreeWithView:toView container:container idMap:self.heroIDToSourceView stateMap:self.targetStates];
         self.container = container;
@@ -277,7 +284,7 @@
         }
     }];
     
-    if (contain || state == nil) {
+    if ((contain || state == nil) && [self.targetStates count]) {
         [self.targetStates removeObjectAtIndex:index];
     }
     

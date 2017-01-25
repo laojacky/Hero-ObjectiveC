@@ -18,14 +18,13 @@ typedef void(^HeroModifierApplyBlock)(HeroTargetState *targetState);
 /**
  Fade the view during transition
  */
-static HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
-    targetState.opacity = 0;
-};
-
+extern const HeroModifierApplyBlock fade;;
 
 @interface HeroModifier : NSObject
 
 @property (nonatomic, copy) HeroModifierApplyBlock apply;
+
+- (instancetype)initWithApplyFunction:(HeroModifierApplyBlock)applyFunction;
 
 @end
 

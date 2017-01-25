@@ -9,6 +9,10 @@
 #import "HeroModifier.h"
 #import "NSArray+HeroModifier.h"
 
+const HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
+    targetState.opacity = 0;
+};
+
 @interface HeroModifier ()
 
 @end
