@@ -10,7 +10,7 @@
 #import "NSArray+HeroModifier.h"
 
 const HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
-    targetState.opacity = 0;
+    targetState.opacity = @(0);
 };
 
 @interface HeroModifier ()
@@ -95,13 +95,13 @@ const HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
 
 @implementation HeroModifier (TimingMidifiers)
 
-+ (HeroModifier *)duration:(NSTimeInterval)duration {
++ (HeroModifier *)duration:(NSNumber *)duration {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.duration = duration;
     }];
 }
 
-+ (HeroModifier *)delay:(NSTimeInterval)delay {
++ (HeroModifier *)delay:(NSNumber *)delay {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.delay = delay;
     }];
@@ -130,20 +130,20 @@ const HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
 }
 
 + (HeroModifier *)arc {
-    return [self arc:1];
+    return [self arc:@(1)];
 }
 
 + (HeroModifier *)cascade {
     return [self cascadeWithDelta:0.02 direction:CascadeDirectionTopToBottom delayMatchedViews:NO];
 }
 
-+ (HeroModifier *)zPosition:(CGFloat)zPosition {
++ (HeroModifier *)zPosition:(NSNumber *)zPosition {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.zPosition = zPosition;
     }];
 }
 
-+ (HeroModifier *)zPositionIfMatched:(CGFloat)zPositionIfMatched {
++ (HeroModifier *)zPositionIfMatched:(NSNumber *)zPositionIfMatched {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.zPositionIfMatched = zPositionIfMatched;
     }];
@@ -161,7 +161,7 @@ const HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
     }];
 }
 
-+ (HeroModifier *)arc:(CGFloat)intensity {
++ (HeroModifier *)arc:(NSNumber *)intensity {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.arc = intensity;
     }];
@@ -222,14 +222,14 @@ const HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
     if ([name isEqualToString:@"duration"]) {
         NSTimeInterval duration = [parameters getDoubleAtIndex:0];
         if (duration) {
-            modifier = [self duration:duration];
+            modifier = [self duration:@(duration)];
         }
     }
     
     if ([name isEqualToString:@"delay"]) {
         NSTimeInterval delay = [parameters getDoubleAtIndex:0];
         if (delay) {
-            modifier = [self delay:delay];
+            modifier = [self delay:@(delay)];
         }
     }
     
@@ -253,7 +253,7 @@ const HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
     }
     
     if ([name isEqualToString:@"arc"]) {
-        modifier = [self arc:[parameters getFloatAtIndex:0] ? [parameters getFloatAtIndex:0] : 1];
+        modifier = [self arc:@([parameters getFloatAtIndex:0] ? [parameters getFloatAtIndex:0] : 1)];
     }
     
     if ([name isEqualToString:@"cascade"]) {
@@ -277,11 +277,11 @@ const HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
     }
     
     if ([name isEqualToString:@"zPosition"]) {
-        modifier = [self zPosition:[parameters getFloatAtIndex:0]];
+        modifier = [self zPosition:@([parameters getFloatAtIndex:0])];
     }
     
     if ([name isEqualToString:@"zPositionIfMatched"]) {
-        modifier = [self zPositionIfMatched:[parameters getFloatAtIndex:0]];
+        modifier = [self zPositionIfMatched:@([parameters getFloatAtIndex:0])];
     }
     
     return modifier;

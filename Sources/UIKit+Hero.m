@@ -233,5 +233,3 @@ static struct PreviousDelegates prevDelegates = {@"heroPreviousNavigationDelegat
 }
 
 @end
-
-//TODO: Overrided == and != in swift version, but it cannot work in OC

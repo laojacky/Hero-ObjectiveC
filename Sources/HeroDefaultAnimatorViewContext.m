@@ -28,9 +28,11 @@
         
         NSMutableArray <NSDictionary *> *disappeared = [self viewStateForTargetState:targetState];
         
+        // TODO: the content of TargetState seems not right comparing with swift version
         [disappeared enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString *key = [[obj allKeys] firstObject];
             id disappearedState = [obj objectForKey:key];
+            
             id appearingState = [snapshot.layer valueForKeyPath:key];
             id toValue = appearing ? appearingState : disappearedState;
             id fromValue = !appearing ? appearingState : disappearedState;
@@ -39,7 +41,7 @@
             [self.state setValue:@[fromValue, toValue] forKey:key];
         }];
         
-        [self animateAfterDelay:targetState.delay];
+        [self animateAfterDelay:[targetState.delay doubleValue]];
     }
     
     return self;
@@ -96,7 +98,7 @@
         fabs(fromPos.x - toPos.x) >= 1 &&
         fabs(fromPos.y - toPos.y) >= 1) {
         
-        CGFloat arcIntensity = self.targetState.arc;
+        CGFloat arcIntensity = [self.targetState.arc floatValue];
         CAKeyframeAnimation *kanim = [CAKeyframeAnimation animationWithKeyPath:key];
         
         CGMutablePathRef path = CGPathCreateMutable();
@@ -248,7 +250,7 @@
         defaultTimingFunction = [CAMediaTimingFunction functionFromName:@"standard"];
     }
     
-    NSTimeInterval duration = self.targetState.duration;
+    NSTimeInterval duration = [self.targetState.duration doubleValue];
     if (duration) {
         defaultDuration = duration;
     } else {
@@ -326,12 +328,12 @@
         [self.state replaceObjectAtIndex:idx withObject:[@{key : @[realFromValue, realToValue]} mutableCopy]];
     }];
     
-    NSTimeInterval realDelay = MAX(0, self.targetState.delay - timePassed);
+    NSTimeInterval realDelay = MAX(0, [self.targetState.delay doubleValue] - timePassed);
     [self animateAfterDelay:realDelay];
 }
 
 - (void)seekLayer:(CALayer *)layer forTime:(NSTimeInterval)timePassed {
-    NSTimeInterval timeOffset = timePassed - self.targetState.delay;
+    NSTimeInterval timeOffset = timePassed - [self.targetState.delay doubleValue];
     [layer.animations enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *key = [[obj allKeys] firstObject];
         CAAnimation *anim = [obj objectForKey:key];

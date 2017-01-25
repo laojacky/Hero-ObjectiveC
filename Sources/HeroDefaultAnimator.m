@@ -83,9 +83,10 @@
 
 - (void)animateView:(UIView *)view appearing:(BOOL)appear {
     UIView *snapshot = [self.context snapshotViewForView:view];
+    HeroTargetState *state = [self.context stateOfView:view];
     HeroDefaultAnimatorViewContext *viewContext = [[HeroDefaultAnimatorViewContext alloc] initWithAnimator:self
                                                                                                   snapshot:snapshot
-                                                                                               targetState:[self.context stateOfView:view]
+                                                                                               targetState:state
                                                                                                  appearing:appear];
     
     __block BOOL contain = NO;

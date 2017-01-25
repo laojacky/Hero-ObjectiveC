@@ -17,22 +17,21 @@
         UIView *fv = [self.context sourceViewForHeroID:heroID];
         if (tv.heroID && fv) {
             HeroTargetState *tvState = [self.context stateOfView:tv] ? [self.context stateOfView:tv] : [[HeroTargetState alloc] init];
-            CGFloat zPosition = tvState.zPositionIfMatched;
-            tvState.zPosition = zPosition;
+            CGFloat zPosition = [tvState.zPositionIfMatched floatValue];
+            tvState.zPosition = @(zPosition);
             tvState.source = heroID;
             
             HeroTargetState *fvState = tvState;
             tvState.opacity = @(0);
             
+            tvState.opacity = @(0);
             if (([fv isKindOfClass:[UILabel class]] && !fv.isOpaque) || tv.alpha < 1) {
                 // cross fade if fromView is a label or if toView is transparent
                 fvState.opacity = @(0);
             } else {
                 fvState.opacity = nil;
             }
-            
-            fvState.opacity = @(0);
-            
+      
             [self.context setState:tvState toView:tv];
             [self.context setState:fvState toView:fv];
         }

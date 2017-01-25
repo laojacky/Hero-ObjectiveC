@@ -113,14 +113,14 @@ extern const HeroModifierApplyBlock fade;;
  - Parameters:
  - duration: duration of the animation
  */
-+ (HeroModifier *)duration:(NSTimeInterval)duration;
++ (HeroModifier *)duration:(NSNumber *)duration;
 
 /**
  Sets the delay of the animation for a given view.
  - Parameters:
  - delay: delay of the animation
  */
-+ (HeroModifier *)delay:(NSTimeInterval)delay;
++ (HeroModifier *)delay:(NSNumber *)delay;
 
 /**
  Sets the timing function of the animation for a given view. If not used, Hero will use determine the timing function based on whether or not the view is entering or exiting the screen.
@@ -164,14 +164,14 @@ extern const HeroModifierApplyBlock fade;;
  - Parameters:
  - zPosition: zPosition during the animation
  */
-+ (HeroModifier *)zPosition:(CGFloat)zPosition;
++ (HeroModifier *)zPosition:(NSNumber *)zPosition;
 
 /**
  Same as zPosition modifier but only effective only when the view is matched. Will override zPosition modifier.
  - Parameters:
  - zPosition: zPosition during the animation
  */
-+ (HeroModifier *)zPositionIfMatched:(CGFloat)zPositionIfMatched;
++ (HeroModifier *)zPositionIfMatched:(NSNumber *)zPositionIfMatched;
 
 /**
  ignore all heroModifiers attributes for a view's subviews.
@@ -193,7 +193,7 @@ extern const HeroModifierApplyBlock fade;;
  - intensity: a value of 1 represent a downward natural curve ╰. a value of -1 represent a upward curve ╮.
  default is 1.
  */
-+ (HeroModifier *)arc:(CGFloat)intensity;
++ (HeroModifier *)arc:(NSNumber *)intensity;
 
 /**
  Cascade applys increasing delay modifiers to subviews

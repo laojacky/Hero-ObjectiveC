@@ -21,7 +21,7 @@
     
     for (UIView *tv in toviews) {
         NSString *heroID = [self.context stateOfView:tv].source;
-        UIView *fv = [self.context destinationViewForHeroID:heroID];
+        UIView *fv = [self.context sourceViewForHeroID:heroID];
         if (heroID && fv) {
             [self prepareForView:tv targetView:fv];
         }
@@ -33,7 +33,7 @@
 @implementation SourcePreprocessor (Prepare)
 
 - (void)prepareForView:(UIView *)view targetView:(UIView *)targetView {
-    CGPoint targetPos = [self.context.container convertPoint:targetView.layer.position toView:targetView.superview];
+    CGPoint targetPos = [self.context.container convertPoint:targetView.layer.position fromView:targetView.superview];
     
     HeroTargetState *state = [self.context stateOfView:view];
     

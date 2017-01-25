@@ -25,17 +25,10 @@
 
 @implementation HeroContext
 
-- (NSMutableArray<NSArray *> *)targetStates {
-    if (!_targetStates) {
-        _targetStates = [NSMutableArray array];
-    }
-    return _targetStates;
-}
-
 - (instancetype)initWithContainer:(UIView *)container fromView:(UIView *)fromView toView:(UIView *)toView {
     if ([self init]) {
         self.fromViews = [HeroContext processViewTreeWithView:fromView container:container idMap:self.heroIDToSourceView stateMap:self.targetStates];
-        self.toViews = [HeroContext processViewTreeWithView:toView container:container idMap:self.heroIDToSourceView stateMap:self.targetStates];
+        self.toViews = [HeroContext processViewTreeWithView:toView container:container idMap:self.heroIDToDestinationView stateMap:self.targetStates];
         self.container = container;
     }
     return self;
@@ -143,7 +136,7 @@
     __block BOOL contain = NO;
     [self.targetStates enumerateObjectsUsingBlock:^(NSArray * _Nonnull pair, NSUInteger idx, BOOL * _Nonnull stop) {
         if (pair[0] == view) {
-            snapshot.layer.zPosition = ((HeroTargetState *)pair[1]).zPosition;
+            snapshot.layer.zPosition = [((HeroTargetState *)pair[1]).zPosition floatValue];
             contain = YES;
             *stop = YES;
         }
@@ -171,14 +164,19 @@
     
     [self.container addSubview:snapshot];
     contain = NO;
+    __block NSInteger index = 0;
     [self.snapshotViews enumerateObjectsUsingBlock:^(NSArray * _Nonnull pair, NSUInteger idx, BOOL * _Nonnull stop) {
         if (pair[0] == view) {
             contain = YES;
+            index = idx;
             *stop = YES;
         }
     }];
     if (!contain) {
         [self.snapshotViews addObject:@[view, snapshot]];
+    } else {
+        [self.snapshotViews removeObjectAtIndex:index];
+        [self.snapshotViews insertObject:@[view, snapshot] atIndex:index];
     }
     
     return snapshot;
@@ -251,6 +249,43 @@
     
     return rtn;
 }
+
+#pragma mark - Getters
+- (NSMutableArray<NSArray *> *)targetStates {
+    if (!_targetStates) {
+        _targetStates = [NSMutableArray array];
+    }
+    return _targetStates;
+}
+
+- (NSMutableArray<NSArray *> *)heroIDToSourceView {
+    if (!_heroIDToSourceView) {
+        _heroIDToSourceView = [NSMutableArray array];
+    }
+    return _heroIDToSourceView;
+}
+
+- (NSMutableArray<NSArray *> *)heroIDToDestinationView {
+    if (!_heroIDToDestinationView) {
+        _heroIDToDestinationView = [NSMutableArray array];
+    }
+    return _heroIDToDestinationView;
+}
+
+- (NSMutableArray<NSArray *> *)snapshotViews {
+    if (!_snapshotViews) {
+        _snapshotViews = [NSMutableArray array];
+    }
+    return _snapshotViews;
+}
+
+- (NSMutableArray<NSArray *> *)viewAlphas {
+    if (!_viewAlphas) {
+        _viewAlphas = [NSMutableArray array];
+    }
+    return _viewAlphas;
+}
+
 @end
 
 

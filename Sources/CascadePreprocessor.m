@@ -103,10 +103,10 @@
             }];
             [sortedSubviews sortedArrayUsingComparator:self.comparator];
             
-            NSTimeInterval initialDelay = [self.context stateOfView:fv].delay;
+            NSTimeInterval initialDelay = [[self.context stateOfView:fv].delay doubleValue];
             [sortedSubviews enumerateObjectsUsingBlock:^(UIView * _Nonnull v, NSUInteger i, BOOL * _Nonnull stop) {
                 NSTimeInterval delay = (NSTimeInterval)i * deltaTime + initialDelay;
-                [self.context stateOfView:v].delay = delay;
+                [self.context stateOfView:v].delay = @(delay);
             }];
             
             if (delayMatchedViews) {
@@ -118,8 +118,8 @@
                     UIView *pairedView = [self.context pairedViewForView:otherView];
                     if (parentView) {
                         NSTimeInterval delay = (NSTimeInterval)sortedSubviews.count * deltaTime + initialDelay;
-                        [self.context stateOfView:otherView].delay = delay;
-                        [self.context stateOfView:pairedView].delay = delay;
+                        [self.context stateOfView:otherView].delay = @(delay);
+                        [self.context stateOfView:pairedView].delay = @(delay);
                     }
                 }
             }

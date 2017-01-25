@@ -158,7 +158,7 @@ static NSMutableArray <Class> *_enablePlugins;
         
         if (timePassed > self.duration) {
             self.progress = self.finishing ? 1 : 0;
-            self.beginTime = 0;
+            self.beginTime = @(0);
             [self complete:self.finishing];
         } else {
             NSTimeInterval completed = timePassed / self.totalDuration;
@@ -184,7 +184,7 @@ typedef void(^HeroUpdateBlock)();
     
     progress = MAX(0, MIN(1, progress));
     HeroUpdateBlock update = ^{
-        self.beginTime = 0;
+        self.beginTime = @(0);
         self.progress = progress;
     };
     if (self.totalDuration == 0) {
@@ -350,11 +350,12 @@ typedef void(^HeroUpdateBlock)();
     
     // wait for a frame if using navigation controller.
     // a bug with navigation controller. the snapshot is not captured if animating immediately
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((self.presenting ? 0.02 : 0) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(((self.inContainerController && self.presenting) ? 0.02 : 0) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         [animatingViews enumerateObjectsUsingBlock:^(NSArray * _Nonnull pair, NSUInteger idx, BOOL * _Nonnull stop) {
             NSArray *curentFromViews = pair[0];
             NSArray *currentToViews = pair[1];
+            // auto hide all animated views
             for (UIView *view in curentFromViews) {
                 [self.context hideView:view];
             }
@@ -435,7 +436,7 @@ typedef void(^HeroUpdateBlock)();
     self.plugins = nil;
     self.animators = nil;
     self.context = nil;
-    self.beginTime = 0;
+    self.beginTime = nil;
     self.inContainerController = NO;
     self.forceNotInteractive = NO;
     self.progress = 0;

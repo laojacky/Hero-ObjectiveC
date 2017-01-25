@@ -19,12 +19,12 @@
 @property (nonatomic, strong) NSValue *size;             //@(CGSize)
 @property (nonatomic, strong) NSValue *transform;       //@(CATransform3D)
 @property (nonatomic, copy) NSArray <NSNumber *> *spring;    //[@(CGFloat), @(CGFloat)], represents stiffness and damping
-@property (nonatomic, assign) NSTimeInterval delay;
-@property (nonatomic, assign) NSTimeInterval duration;
+@property (nonatomic, strong) NSNumber *delay;     //@(Double)
+@property (nonatomic, strong) NSNumber *duration;      //@(Double)
 @property (nonatomic, strong) CAMediaTimingFunction *timingFunction;
-@property (nonatomic, assign) CGFloat arc;
-@property (nonatomic, assign) CGFloat zPosition;
-@property (nonatomic, assign) CGFloat zPositionIfMatched;
+@property (nonatomic, strong) NSNumber *arc;        //@(CGFloat)
+@property (nonatomic, strong) NSNumber *zPosition;      //@(CGFloat)
+@property (nonatomic, strong) NSNumber *zPositionIfMatched;     //@(CGFloat)
 @property (nonatomic, copy) NSString *source;
 @property (nonatomic, copy) NSArray *cascade;       //[@(NSTimeInterval), @(CascadeDirection), @(BOOL)], represents cascade timeinterval, direction and delayMatchedViews
 
