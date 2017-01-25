@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
@@ -13,7 +14,7 @@
         <!--City Guide View Controller-->
         <scene sceneID="h9p-gh-5mz">
             <objects>
-                <viewController id="Tnf-dk-9EF" customClass="CityGuideViewController" customModule="Hero_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Tnf-dk-9EF" customClass="CityGuideViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w8v-n5-3mO"/>
                         <viewControllerLayoutGuide type="bottom" id="NvN-jP-Psy"/>
@@ -35,7 +36,7 @@
                                     <inset key="sectionInset" minX="24" minY="24" maxX="24" maxY="24"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="item" id="1jz-4R-leo" customClass="CityCell" customModule="Hero_ObjectiveC" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="item" id="1jz-4R-leo" customClass="CityCell">
                                         <rect key="frame" x="24" y="25" width="200" height="298"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -186,7 +187,7 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="collectionView" destination="bV4-y8-FY0" id="dEe-8j-cbG"/>
+                        <outlet property="collectionView" destination="bV4-y8-FY0" id="7Sj-0j-jXN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RHl-8a-4vU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -196,7 +197,7 @@
         <!--City View Controller-->
         <scene sceneID="fwz-Du-JHU">
             <objects>
-                <viewController id="zqh-r4-Svz" customClass="CityViewController" customModule="Hero_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zqh-r4-Svz" customClass="CityViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MEI-89-uDD"/>
                         <viewControllerLayoutGuide type="bottom" id="zYL-Sh-0i5"/>
@@ -215,7 +216,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="item" id="UsK-II-tbB" customClass="CityCell" customModule="Hero_ObjectiveC" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="item" id="UsK-II-tbB" customClass="CityCell">
                                         <rect key="frame" x="0.0" y="-1" width="375" height="669"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -307,7 +308,7 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="collectionView" destination="hLT-eh-T42" id="OGw-QS-n8P"/>
+                        <outlet property="collectionView" destination="hLT-eh-T42" id="p5J-bw-ufb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q5l-99-eDb" userLabel="First Responder" sceneMemberID="firstResponder"/>

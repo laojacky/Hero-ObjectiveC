@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class City;
+
 @interface CityCell : UICollectionViewCell
+
+@property (nonatomic, strong) City *city;
+@property (nonatomic, assign) BOOL useShortDescription;
 
 @end

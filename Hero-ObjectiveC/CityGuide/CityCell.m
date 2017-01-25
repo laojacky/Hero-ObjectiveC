@@ -10,19 +10,19 @@
 #import "City.h"
 #import "UIKit+Hero.h"
 
-static BOOL useShortDescription = YES;
-
 @interface CityCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
-@property (strong, nonatomic) City *city;
-
 @end
 
 @implementation CityCell
+
+- (void)prepareForReuse {
+    self.useShortDescription = YES; //Default Value
+}
 
 - (void)setCity:(City *)city {
     
@@ -37,7 +37,7 @@ static BOOL useShortDescription = YES;
     
     self.nameLabel.text = name;
     self.imageView.image = city.image;
-    self.descriptionLabel.text = useShortDescription ? city.shortDescription : city.description;
+    self.descriptionLabel.text = self.useShortDescription ? city.shortDescription : city.description;
 }
 
 @end

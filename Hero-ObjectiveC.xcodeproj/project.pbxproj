@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64DE084C1E38454D008ACFA9 /* CityGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DE084B1E38454D008ACFA9 /* CityGuideViewController.m */; };
+		64DE084F1E384720008ACFA9 /* CityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DE084E1E384720008ACFA9 /* CityViewController.m */; };
 		64F079991E346D94005331E0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F079981E346D94005331E0 /* main.m */; };
 		64F0799C1E346D94005331E0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F0799B1E346D94005331E0 /* AppDelegate.m */; };
 		64F0799F1E346D94005331E0 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F0799E1E346D94005331E0 /* InitialViewController.m */; };
@@ -40,6 +42,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		64DE084A1E38454D008ACFA9 /* CityGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CityGuideViewController.h; path = CityGuide/CityGuideViewController.h; sourceTree = "<group>"; };
+		64DE084B1E38454D008ACFA9 /* CityGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CityGuideViewController.m; path = CityGuide/CityGuideViewController.m; sourceTree = "<group>"; };
+		64DE084D1E384720008ACFA9 /* CityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CityViewController.h; path = CityGuide/CityViewController.h; sourceTree = "<group>"; };
+		64DE084E1E384720008ACFA9 /* CityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CityViewController.m; path = CityGuide/CityViewController.m; sourceTree = "<group>"; };
 		64F079941E346D94005331E0 /* Hero-ObjectiveC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hero-ObjectiveC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64F079981E346D94005331E0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		64F0799A1E346D94005331E0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = "Hero-ObjectiveC/AppDelegate.h"; sourceTree = "<group>"; };
@@ -179,6 +185,10 @@
 				64F079E71E348217005331E0 /* City.m */,
 				64F079EB1E348492005331E0 /* CityCell.h */,
 				64F079EC1E348492005331E0 /* CityCell.m */,
+				64DE084A1E38454D008ACFA9 /* CityGuideViewController.h */,
+				64DE084B1E38454D008ACFA9 /* CityGuideViewController.m */,
+				64DE084D1E384720008ACFA9 /* CityViewController.h */,
+				64DE084E1E384720008ACFA9 /* CityViewController.m */,
 			);
 			name = CityGuide;
 			sourceTree = "<group>";
@@ -341,6 +351,7 @@
 				64F07A161E360E3C005331E0 /* CAMediaTimingFunction+Hero.m in Sources */,
 				64F07A2E1E370F18005331E0 /* HeroDefaultAnimator.m in Sources */,
 				64F07A011E348BCA005331E0 /* HeroContext.m in Sources */,
+				64DE084C1E38454D008ACFA9 /* CityGuideViewController.m in Sources */,
 				64F079CD1E347BC1005331E0 /* UIKit+HeroExamples.m in Sources */,
 				64F07A071E348C5C005331E0 /* HeroTargetState.m in Sources */,
 				64F079FE1E348BAB005331E0 /* Hero.m in Sources */,
@@ -352,6 +363,7 @@
 				64F07A251E36FC80005331E0 /* IgnoreSubviewModifiersPreprocessor.m in Sources */,
 				64F07A101E3608AF005331E0 /* NSArray+HeroModifier.m in Sources */,
 				64F07A0A1E348C7A005331E0 /* HeroTypes.m in Sources */,
+				64DE084F1E384720008ACFA9 /* CityViewController.m in Sources */,
 				64F07A2B1E370446005331E0 /* SourcePreprocessor.m in Sources */,
 				64F07A311E3727DC005331E0 /* HeroDefaultAnimatorViewContext.m in Sources */,
 			);
