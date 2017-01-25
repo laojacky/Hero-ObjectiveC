@@ -58,7 +58,7 @@
 
 - (BOOL)canAnimateView:(UIView *)view appearing:(BOOL)appear {
     HeroTargetState *state = [self.context stateOfView:view];
-    return !CGPointEqualToPoint(CGPointZero, state.position) || !CGSizeEqualToSize(CGSizeZero, state.size) || state.transform || state.cornerRadius != 0 || state.opacity;
+    return state.position || state.size || state.transform || state.cornerRadius || state.opacity;
 }
 
 - (NSTimeInterval)animateFromViews:(NSArray *)fromviews toViews:(NSArray *)toviews {

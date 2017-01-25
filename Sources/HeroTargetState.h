@@ -14,9 +14,9 @@
 @interface HeroTargetState : NSObject
 
 @property (nonatomic, strong) NSNumber *opacity;      //@(CGFloat)
-@property (nonatomic, assign) CGFloat cornerRadius;
-@property (nonatomic, assign) CGPoint position;
-@property (nonatomic, assign) CGSize size;
+@property (nonatomic, strong) NSNumber *cornerRadius;       //@(CGFloat)
+@property (nonatomic, strong) NSValue *position;         //@(CGPoint)
+@property (nonatomic, strong) NSValue *size;             //@(CGSize)
 @property (nonatomic, strong) NSValue *transform;       //@(CATransform3D)
 @property (nonatomic, copy) NSArray <NSNumber *> *spring;    //[@(CGFloat), @(CGFloat)], represents stiffness and damping
 @property (nonatomic, assign) NSTimeInterval delay;

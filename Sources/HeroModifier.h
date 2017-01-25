@@ -35,14 +35,14 @@ extern const HeroModifierApplyBlock fade;;
  - Parameters:
  - position: position for the view to animate from/to
  */
-+ (HeroModifier *)position:(CGPoint)position;
++ (HeroModifier *)position:(NSValue *)position;
 
 /**
  Set the size for the view to animate from/to.
  - Parameters:
  - size: size for the view to animate from/to
  */
-+ (HeroModifier *)size:(CGSize)size;
++ (HeroModifier *)size:(NSValue *)size;
 
 @end
 

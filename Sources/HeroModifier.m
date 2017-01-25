@@ -31,13 +31,13 @@ const HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
 
 @implementation HeroModifier (BasicModifiers)
 
-+ (HeroModifier *)position:(CGPoint)position {
++ (HeroModifier *)position:(NSValue *)position {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.position = position;
     }];
 }
 
-+ (HeroModifier *)size:(CGSize)size {
++ (HeroModifier *)size:(NSValue *)size {
     return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
         targetState.size = size;
     }];
@@ -186,11 +186,11 @@ const HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
     }
     
     if ([name isEqualToString:@"position"]) {
-        modifier = [self position:CGPointMake([parameters getFloatAtIndex:0] ? [parameters getFloatAtIndex:0] : 0, [parameters getFloatAtIndex:1] ? [parameters getFloatAtIndex:1] : 0)];
+        modifier = [self position:[NSValue valueWithCGPoint:CGPointMake([parameters getFloatAtIndex:0] ? [parameters getFloatAtIndex:0] : 0, [parameters getFloatAtIndex:1] ? [parameters getFloatAtIndex:1] : 0)]];
     }
     
     if ([name isEqualToString:@"size"]) {
-        modifier = [self size:CGSizeMake([parameters getFloatAtIndex:0] ? [parameters getFloatAtIndex:0] : 0, [parameters getFloatAtIndex:1] ? [parameters getFloatAtIndex:1] : 0)];
+        modifier = [self size:[NSValue valueWithCGSize:CGSizeMake([parameters getFloatAtIndex:0] ? [parameters getFloatAtIndex:0] : 0, [parameters getFloatAtIndex:1] ? [parameters getFloatAtIndex:1] : 0)]];
     }
     
     if ([name isEqualToString:@"scale"]) {

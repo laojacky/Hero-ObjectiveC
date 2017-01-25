@@ -38,16 +38,16 @@
     HeroTargetState *state = [self.context stateOfView:view];
     
     // remove incompatible options
-    //state.transform = nil;
-    //state.size = nil;
+    state.transform = nil;
+    state.size = nil;
 
-    state.position = targetPos;
+    state.position = [NSValue valueWithCGPoint:targetPos];
     if (!CGSizeEqualToSize(view.bounds.size, targetView.bounds.size)) {
-        state.size = targetView.bounds.size;
+        state.size = [NSValue valueWithCGSize:targetView.bounds.size];
     }
     
     if (view.layer.cornerRadius != targetView.layer.cornerRadius) {
-        state.cornerRadius = targetView.layer.cornerRadius;
+        state.cornerRadius = @(targetView.layer.cornerRadius);
     }
     
     if (!CATransform3DEqualToTransform(view.layer.transform, targetView.layer.transform)) {

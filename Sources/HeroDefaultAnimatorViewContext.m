@@ -179,16 +179,23 @@
 - (NSMutableArray <NSDictionary *> *)viewStateForTargetState:(HeroTargetState *)targetState {
     NSMutableArray *rtn = [NSMutableArray array];
     
-    NSDictionary *dic = @{@"bounds.size" : [NSValue valueWithCGSize:targetState.size]};
-    [rtn addObject:dic];
-    dic = @{@"position" : [NSValue valueWithCGPoint:targetState.position]};
-    [rtn addObject:dic];
+    NSDictionary *dic;
+    if (targetState.size) {
+        dic = @{@"bounds.size" : targetState.size};
+        [rtn addObject:dic];
+    }
+    if (targetState.position) {
+        dic = @{@"position" : targetState.position};
+        [rtn addObject:dic];
+    }
     if (targetState.opacity) {
         dic = @{@"opacity" :  targetState.opacity};
         [rtn addObject:dic];
     }
-    dic = @{@"cornerRadius" : @(targetState.cornerRadius)};
-    [rtn addObject:dic];
+    if (targetState.cornerRadius) {
+        dic = @{@"cornerRadius" : targetState.cornerRadius};
+        [rtn addObject:dic];
+    }
     if (targetState.transform) {
         dic = @{@"transform" : targetState.transform};
         [rtn addObject:dic];
