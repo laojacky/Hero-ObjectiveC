@@ -46,7 +46,8 @@
                 }
             }];
             if (contain) {
-                [self.state setValue:@[fromValue, toValue] forKey:key];
+                [self.state removeObjectAtIndex:index];
+                [self.state insertObject:[@{key : @[fromValue, toValue]} mutableCopy] atIndex:index];
             } else {
                 [self.state addObject:[@{key : @[fromValue, toValue]} mutableCopy]];
             }

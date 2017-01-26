@@ -100,7 +100,8 @@
     }];
     
     if (contain) {
-        [self.viewContexts setObject:[@[view, viewContext] mutableCopy] atIndexedSubscript:index];
+        [self.viewContexts removeObjectAtIndex:index];
+        [self.viewContexts insertObject:[@[view, viewContext] mutableCopy] atIndex:index];
     } else {
         [self.viewContexts addObject:[@[view, viewContext] mutableCopy]];
     }
