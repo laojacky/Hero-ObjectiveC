@@ -25,10 +25,10 @@
         self.targetState = targetState;
         self.state = [NSMutableArray array];
         self.defaultTiming = [NSMutableArray array];
-        
+
         NSMutableArray <NSDictionary *> *disappeared = [self viewStateForTargetState:targetState];
         
-        // TODO: the content of TargetState seems not right comparing with swift version
+
         [disappeared enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString *key = [[obj allKeys] firstObject];
             id disappearedState = [obj objectForKey:key];
@@ -37,8 +37,19 @@
             id toValue = appearing ? appearingState : disappearedState;
             id fromValue = !appearing ? appearingState : disappearedState;
             
-            //Invoke -setValue:forKey: on each of the receiver's elements.
-            [self.state setValue:@[fromValue, toValue] forKey:key];
+            __block BOOL contain = NO;
+            __block NSInteger index = 0;
+            [self.state enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([[[obj allKeys] firstObject] isEqualToString:key]) {
+                    contain = YES;
+                    index = idx;
+                }
+            }];
+            if (contain) {
+                [self.state setValue:@[fromValue, toValue] forKey:key];
+            } else {
+                [self.state addObject:[@{key : @[fromValue, toValue]} mutableCopy]];
+            }
         }];
         
         [self animateAfterDelay:[targetState.delay doubleValue]];
@@ -91,8 +102,13 @@
     
     CAPropertyAnimation *anim;
     NSArray *animParam = @[@(0.0), self.defaultTiming[0], self.defaultTiming[1]];   //@[delay, duration, timingFunction]
-    CGPoint fromPos = [fromValue CGPointValue];
-    CGPoint toPos = [toValue CGPointValue];
+    CGPoint fromPos;
+    CGPoint toPos;
+    // Only for CGPoint, set the default value
+    if ([[NSString stringWithCString:[fromValue objCType] encoding:NSASCIIStringEncoding] hasPrefix:@"CGPoint"]) {
+        fromPos = [fromValue CGPointValue];
+        toPos = [toValue CGPointValue];
+    }
     
     if (!ignoreArc && [key isEqualToString:@"position"] && self.targetState.arc &&
         fabs(fromPos.x - toPos.x) >= 1 &&
@@ -114,7 +130,7 @@
         
         kanim.values = @[fromValue, toValue];
         kanim.path = path;
-        kanim.duration = [animParam[1] floatValue];
+        kanim.duration = [animParam[1] doubleValue];
         kanim.timingFunctions = animParam[2];
         anim = kanim;
     } else if (![key isEqualToString:@"cornerRadius"] && self.targetState.spring) {
@@ -128,7 +144,7 @@
         anim = sanim;
     } else {
         CABasicAnimation *banim = [CABasicAnimation animationWithKeyPath:key];
-        banim = animParam[1];
+        banim.duration = [animParam[1] doubleValue];
         banim.fromValue = fromValue;
         banim.toValue = toValue;
         banim.timingFunction = animParam[2];
@@ -212,10 +228,10 @@
     CAMediaTimingFunction *defaultTimingFunction;
     
     // timingFunction
-    __block CGPoint fromPos;
-    __block CGPoint toPos;
-    __block CATransform3D fromTransform;
-    __block CATransform3D toTransform;
+    __block CGPoint fromPos = self.snapshot.layer.position;     //Default value when no such key in self.state
+    __block CGPoint toPos = fromPos;        //Default value when no such key in self.state
+    __block CATransform3D fromTransform = CATransform3DIdentity;        //Default value when no such key in self.state
+    __block CATransform3D toTransform = CATransform3DIdentity;      //Default value when no such key in self.state
     __block CGPoint realFromPos;
     __block CGPoint realToPos;
     [self.state enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -227,7 +243,7 @@
         }
         if (tArray && [tArray count]) {
             fromTransform = (NSValue *)pArray[0] ? [(NSValue *)pArray[0] CATransform3DValue] : CATransform3DIdentity;
-            fromTransform = (NSValue *)pArray[1] ? [(NSValue *)pArray[1] CATransform3DValue] : CATransform3DIdentity;
+            toTransform = (NSValue *)pArray[1] ? [(NSValue *)pArray[1] CATransform3DValue] : CATransform3DIdentity;
         }
     }];
     
@@ -235,7 +251,7 @@
     realFromPos = CGPointMake(CGPointApplyAffineTransform(CGPointZero, affineTransform).x + fromPos.x,
                               CGPointApplyAffineTransform(CGPointZero, affineTransform).y + fromPos.y);
     affineTransform = CATransform3DGetAffineTransform(toTransform);
-    realFromPos = CGPointMake(CGPointApplyAffineTransform(CGPointZero, affineTransform).x + toPos.x,
+    realToPos = CGPointMake(CGPointApplyAffineTransform(CGPointZero, affineTransform).x + toPos.x,
                               CGPointApplyAffineTransform(CGPointZero, affineTransform).y + toPos.y);
     
     CAMediaTimingFunction *timingFunction = self.targetState.timingFunction;
@@ -250,12 +266,12 @@
         defaultTimingFunction = [CAMediaTimingFunction functionFromName:@"standard"];
     }
     
-    NSTimeInterval duration = [self.targetState.duration doubleValue];
+    NSNumber *duration = self.targetState.duration;
     if (duration) {
-        defaultDuration = duration;
+        defaultDuration = [duration doubleValue];
     } else {
-        __block CGSize fromSize;
-        __block CGSize toSize;
+        __block CGSize fromSize = self.snapshot.layer.bounds.size;      //Default value when no such key in self.state
+        __block CGSize toSize = fromSize;       //Default value when no such key in self.state
         __block CGSize realFromSize;
         __block CGSize realToSize;
         [self.state enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -265,9 +281,10 @@
                 toSize = (NSValue *)sArray[1] ? [(NSValue *)sArray[1] CGSizeValue] : fromSize;
             }
         }];
-        CGAffineTransform affineTransform = CATransform3DGetAffineTransform(fromTransform);
-        realFromSize = CGSizeMake(CGSizeApplyAffineTransform(fromSize, affineTransform).width,
-                                  CGSizeApplyAffineTransform(toSize, affineTransform).height);
+        CGAffineTransform affineFromTransform = CATransform3DGetAffineTransform(fromTransform);
+        CGAffineTransform affineToTransform = CATransform3DGetAffineTransform(toTransform);
+        realFromSize = CGSizeApplyAffineTransform(fromSize, affineFromTransform);
+        realToSize = CGSizeApplyAffineTransform(toSize, affineToTransform);
         
         CGFloat movePoints = [self distanceFrom:realFromPos to:realToPos] + [self distanceFrom:CGPointMake(realFromSize.width, realFromSize.height) to:CGPointMake(realToSize.width, realToSize.height)];
         
@@ -282,10 +299,10 @@
     NSTimeInterval beginTime = self.currentTime + delay;
     // to enumerate @[{NSString : @[obj1, obj2]}, ...], we need a two-layer enumerate
     [self.state enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-            NSTimeInterval neededTime = [self addAnimationWithKey:key beginTime:beginTime fromValue:[obj objectForKey:key][0] toValue:[obj objectForKey:key][1]];
-            self.duration = MAX(duration, neededTime + delay);
-        }];
+        NSString *key = [[obj allKeys] firstObject];
+        NSArray *value = [obj objectForKey:key];
+        NSTimeInterval neededTime = [self addAnimationWithKey:key beginTime:beginTime fromValue:value[0] toValue:value[1]];
+        self.duration = MAX(self.duration, neededTime + delay);
     }];
     
 }
@@ -348,6 +365,14 @@
     [self seekLayer:self.snapshot.layer forTime:timePassed];
     if (self.contentLayer) {
         [self seekLayer:self.contentLayer forTime:timePassed];
+    }
+}
+
+#pragma mark - Getter
+
+- (void)setState:(NSMutableArray<NSMutableDictionary *> *)state {
+    if (!_state) {
+        _state = [NSMutableArray array];
     }
 }
 

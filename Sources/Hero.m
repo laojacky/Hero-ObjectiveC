@@ -461,7 +461,9 @@ typedef void(^HeroUpdateBlock)();
         [tContext cancelInteractiveTransition];
     }
     [tContext completeTransition:finished];
-    completion();
+    if (completion) {
+        completion();
+    }
 }
 
 @end
