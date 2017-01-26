@@ -234,10 +234,34 @@
     if (!CGRectEqualToRect(CGRectIntersection([container convertRect:view.bounds fromView:view], container.bounds), CGRectNull)) {
         rtn = [@[view] mutableCopy];
         if (view.heroID) {
-            [idMap addObject:@[view.heroID, view]];
+            __block BOOL contain = NO;
+            __block NSInteger index = 0;
+            [idMap enumerateObjectsUsingBlock:^(NSArray *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([[obj firstObject] isEqualToString:view.heroID]) {
+                    contain = YES;
+                    index = idx;
+                    *stop = YES;
+                }
+            }];
+            if (contain) {
+                [idMap removeObjectAtIndex:index];
+            }
+            [idMap insertObject:@[view.heroID, view] atIndex:index];
         }
         if (view.heroModifiers && [view.heroModifiers count]) {
-            [stateMap addObject:@[view, [[HeroTargetState alloc] initWithModifiers:view.heroModifiers]]];
+            __block BOOL contain = NO;
+            __block NSInteger index = 0;
+            [stateMap enumerateObjectsUsingBlock:^(NSArray *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([obj firstObject] == view) {
+                    contain = YES;
+                    index = idx;
+                    *stop = YES;
+                }
+            }];
+            if (contain) {
+                [stateMap removeObjectAtIndex:index];
+            }
+            [stateMap insertObject:@[view, [[HeroTargetState alloc] initWithModifiers:view.heroModifiers]] atIndex:index];
         }
     } else {
         rtn = [@[] mutableCopy];
@@ -324,7 +348,7 @@
     }
     
     if (state) {
-        [self.targetStates addObject:@[view, state]];
+        [self.targetStates insertObject:@[view, state] atIndex:index];
     }
 }
 
