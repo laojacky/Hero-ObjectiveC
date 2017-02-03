@@ -301,6 +301,7 @@ typedef void(^HeroUpdateBlock)();
     [self.container insertSubview:self.toView belowSubview:self.fromView];
     [self.container setBackgroundColor:self.toView.backgroundColor];
     
+    self.toView.frame = self.fromView.frame;
     [self.toView updateConstraints];
     [self.toView setNeedsLayout];
     [self.toView layoutIfNeeded];
