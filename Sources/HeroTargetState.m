@@ -67,6 +67,43 @@
     [self.custom addObject:dict];
 }
 
+#pragma mark - Getter
+
+- (NSNumber *)delay {
+    //Default 0
+    if (!_delay) {
+        return [NSNumber numberWithInteger:0];
+    }
+    return _delay;
+}
+
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+    HeroTargetState *copyState = [[self class] allocWithZone:zone];
+    copyState->_opacity = _opacity;
+    copyState->_cornerRadius = _cornerRadius;
+    copyState->_position = _position;
+    copyState->_size = _size;
+    copyState->_transform = _transform;
+    copyState->_spring = _spring;
+    copyState->_delay = _delay;
+    copyState->_duration = _duration;
+    copyState->_timingFunction = _timingFunction;
+    copyState->_arc =_arc;
+    copyState->_zPosition = _zPosition;
+    copyState->_zPositionIfMatched = _zPositionIfMatched;
+    copyState->_source = _source;
+    copyState->_cascade = _cascade;
+    
+    copyState->_ignoreSubviewModifiers = _ignoreSubviewModifiers;
+    
+    copyState->_custom = [NSMutableArray array];
+    copyState->_custom = _custom;
+    
+    return copyState;
+}
+
 @end
 
 

@@ -333,22 +333,24 @@
 }
 
 - (void)setState:(HeroTargetState *)state toView:(UIView *)view {
-    __block BOOL contain = NO;
-    __block NSInteger index = 0;
-    [self.targetStates enumerateObjectsUsingBlock:^(NSArray * _Nonnull pair, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (pair[0] == view && pair[1] == state) {
-            index = idx;
-            contain = YES;
-            *stop = YES;
-        }
-    }];
     
-    if ((contain || state == nil) && [self.targetStates count]) {
+    BOOL contain = NO;
+    NSInteger index = 0;
+
+    for (NSArray *pair in self.targetStates) {
+        if (pair[0] == view) {
+            contain = YES;
+            break;
+        }
+        index ++;
+    }
+    
+    if (contain && [self.targetStates count]) {
         [self.targetStates removeObjectAtIndex:index];
     }
     
     if (state) {
-        [self.targetStates insertObject:@[view, state] atIndex:index];
+        [self.targetStates addObject:@[view, state]];
     }
 }
 

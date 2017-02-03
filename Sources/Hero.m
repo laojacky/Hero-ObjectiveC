@@ -402,6 +402,11 @@ typedef void(^HeroUpdateBlock)();
 }
 
 - (void)complete:(BOOL)finished {
+    
+    if (!self.transitioning) {
+        return;
+    }
+    
     for (id <HeroAnimator> animator in self.animators) {
         [animator clean];
     }

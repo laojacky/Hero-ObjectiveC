@@ -298,10 +298,10 @@
     
     self.duration = 0;
     NSTimeInterval beginTime = self.currentTime + delay;
-    // to enumerate @[{NSString : @[obj1, obj2]}, ...], we need a two-layer enumerate
     [self.state enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *key = [[obj allKeys] firstObject];
         NSArray *value = [obj objectForKey:key];
+        NSLog(@"Key: %@ from: %@, to: %@ \n", key, value[0], value[1]);
         NSTimeInterval neededTime = [self addAnimationWithKey:key beginTime:beginTime fromValue:value[0] toValue:value[1]];
         self.duration = MAX(self.duration, neededTime + delay);
     }];

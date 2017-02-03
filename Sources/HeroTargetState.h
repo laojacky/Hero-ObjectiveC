@@ -11,7 +11,7 @@
 
 @class HeroModifier;
 
-@interface HeroTargetState : NSObject
+@interface HeroTargetState : NSObject <NSCopying>
 
 @property (nonatomic, strong) NSNumber *opacity;      //@(CGFloat)
 @property (nonatomic, strong) NSNumber *cornerRadius;       //@(CGFloat)

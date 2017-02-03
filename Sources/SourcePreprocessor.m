@@ -35,7 +35,7 @@
 - (void)prepareForView:(UIView *)view targetView:(UIView *)targetView {
     CGPoint targetPos = [self.context.container convertPoint:targetView.layer.position fromView:targetView.superview];
     
-    HeroTargetState *state = [self.context stateOfView:view];
+    HeroTargetState *state = [[self.context stateOfView:view] copy];
     
     // remove incompatible options
     state.transform = nil;
