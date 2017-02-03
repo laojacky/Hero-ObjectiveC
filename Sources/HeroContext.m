@@ -132,10 +132,9 @@
     }
     
     snapshot.layer.cornerRadius = view.layer.cornerRadius;
-    
     __block BOOL contain = NO;
     [self.targetStates enumerateObjectsUsingBlock:^(NSArray * _Nonnull pair, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (pair[0] == view) {
+        if (pair[0] == view && ((HeroTargetState *)pair[1]).zPosition) {
             snapshot.layer.zPosition = [((HeroTargetState *)pair[1]).zPosition floatValue];
             contain = YES;
             *stop = YES;
@@ -200,19 +199,20 @@
 }
 
 - (void)unhideView:(UIView *)view {
-    __block CGFloat oldAlpha = 0;
+    __block NSNumber *oldAlpha = nil;
     __block BOOL contain = NO;
     __block NSInteger index = 0;
     [self.viewAlphas enumerateObjectsUsingBlock:^(NSArray * _Nonnull pair, NSUInteger idx, BOOL * _Nonnull stop) {
         if (pair[0] == view) {
-            oldAlpha = [pair[1] floatValue];
+            oldAlpha = pair[1];
+            contain = YES;
             index = idx;
             *stop = YES;
         }
     }];
     
-    if (contain) {
-        view.alpha = oldAlpha;
+    if (contain && oldAlpha) {
+        view.alpha = [oldAlpha floatValue];
         [self.viewAlphas removeObjectAtIndex:index];
     }
 }
@@ -327,7 +327,7 @@
     }];
     
     if (contain) {
-        return [self.targetStates objectAtIndex:index][1];
+        return [[self.targetStates objectAtIndex:index][1] copy];
     }
     return nil;
 }
