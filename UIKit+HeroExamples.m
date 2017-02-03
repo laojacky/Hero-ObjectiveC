@@ -59,6 +59,8 @@
 }
 
 - (UIViewController *)viewControllerForStoryboardName:(NSString *)storyboardName {
-    return [UIStoryboard storyboardWithName:storyboardName bundle:nil].instantiateInitialViewController;
+    UIViewController *vc = [UIStoryboard storyboardWithName:storyboardName bundle:nil].instantiateInitialViewController;
+    NSAssert(vc, @"This storyboard is NOT AVAILABLE on this moment, please wait for further translation work.");
+    return vc;
 }
 @end

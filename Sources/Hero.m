@@ -183,15 +183,8 @@ typedef void(^HeroUpdateBlock)();
     }
     
     progress = MAX(0, MIN(1, progress));
-    HeroUpdateBlock update = ^{
-        self.beginTime = @(0);
-        self.progress = progress;
-    };
-    if (self.totalDuration == 0) {
-        dispatch_async(dispatch_get_main_queue(), update);
-    } else {
-        update();
-    }
+    self.beginTime = nil;
+    self.progress = progress;
 }
 
 - (void)end {
@@ -366,15 +359,24 @@ typedef void(^HeroUpdateBlock)();
         }];
         
         __block NSTimeInterval totalDuration = 0;
+        __block BOOL animatorWantsInteractive = NO;
         [self.animators enumerateObjectsUsingBlock:^(id<HeroAnimator>  _Nonnull animator, NSUInteger idx, BOOL * _Nonnull stop) {
             NSTimeInterval duration = [animator animateFromViews:animatingViews[idx][0] toViews:animatingViews[idx][1]];
-            totalDuration = MAX(totalDuration, duration);
+            if (duration == INFINITY) {
+                animatorWantsInteractive = YES;
+            } else {
+                totalDuration = MAX(totalDuration, duration);
+            }
         }];
         
         // we are done with setting up, so remove the covering snapshot
         [completeSnapshot removeFromSuperview];
         self.totalDuration = totalDuration;
-        [self completeAfter:totalDuration finishing:YES];
+        if (animatorWantsInteractive) {
+            [self updateProgress:0.001];
+        } else {
+            [self completeAfter:totalDuration finishing:YES];
+        }
     });
 }
 
@@ -395,6 +397,12 @@ typedef void(^HeroUpdateBlock)();
 }
 
 - (void)completeAfter:(NSTimeInterval)after finishing:(BOOL)finishing {
+    
+    if (after <= 0.001) {
+        [self complete:finishing];
+        return;
+    }
+    
     NSTimeInterval timePassed = (finishing ? self.progress : 1 - self.progress) * self.totalDuration;
     self.finishing = finishing;
     self.duration = after + timePassed;
