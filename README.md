@@ -4,9 +4,10 @@ Copyright: lkzhao. [Hero in Swift](https://github.com/lkzhao/Hero)
 Obj-C project: LucaGalaxy.
 
 
-```NOTE: We are still working on this project, please do not pull this repo, thank you!```
+```NOTE: Some transitions can be performed now. Howerver, "ImageViewer", "List to Grid", "Image Gallery", and Advanced UI testing have not been translated so far. I will continue to finish this work ASAP```
 
 
 ## START FROM: 2017-01-22
+## Current version: v 1.0.3
 
-### Base on commit: 65349d0dc3a411c97cd86c53b9c2abaedd55ec9a
+### Base on commit: b5a9f2797abbfc909248ad12796e78740ad31d84
