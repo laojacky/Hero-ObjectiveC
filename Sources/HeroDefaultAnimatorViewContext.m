@@ -106,7 +106,7 @@
     CGPoint fromPos;
     CGPoint toPos;
     // Only for CGPoint, set the default value
-    if ([[NSString stringWithCString:[fromValue objCType] encoding:NSASCIIStringEncoding] hasPrefix:@"CGPoint"]) {
+    if ([[NSString stringWithCString:[fromValue objCType] encoding:NSASCIIStringEncoding] hasPrefix:@"{CGPoint"]) {
         fromPos = [fromValue CGPointValue];
         toPos = [toValue CGPointValue];
     }
@@ -132,7 +132,7 @@
         kanim.values = @[fromValue, toValue];
         kanim.path = path;
         kanim.duration = [animParam[1] doubleValue];
-        kanim.timingFunctions = animParam[2];
+        kanim.timingFunctions = @[animParam[2]];
         anim = kanim;
     } else if (![key isEqualToString:@"cornerRadius"] && self.targetState.spring) {
         NSArray *sanimParam = self.targetState.spring;

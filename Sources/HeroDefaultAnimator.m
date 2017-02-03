@@ -77,7 +77,7 @@
         HeroDefaultAnimatorViewContext *viewContext = obj[1];
         duration = MAX(duration, viewContext.duration);
     }];
-    
+
     return duration;
 }
 
