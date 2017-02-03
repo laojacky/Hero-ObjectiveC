@@ -15,16 +15,22 @@
 
 @interface Hero : NSObject
 
+/// destination view controller
 @property (nonatomic, weak, readonly) UIViewController *toViewController;
+/// source view controller
 @property (nonatomic, weak, readonly) UIViewController *fromViewController;
+/// context object holding transition informations
 @property (nonatomic, strong, readonly) HeroContext *context;
+/// whether or not we are presenting the destination view controller
 @property (nonatomic, assign, readonly) BOOL presenting;
-
+/// whether or not we are handling transition interactively
 @property (nonatomic, assign) BOOL interactive;
+/// progress of the current transition. 0 if no transition is happening
 @property (nonatomic, assign, readonly) CGFloat progress;
+/// whether or not we are doing a transition
 @property (nonatomic, assign) BOOL transitioning;
-// container we created to hold all animating views, will be a subview of the
-// transitionContainer when transitioning
+/// container we created to hold all animating views, will be a subview of the
+/// transitionContainer when transitioning
 @property (nonatomic, strong, readonly) UIView *container;
 
 @property (nonatomic, assign) BOOL forceNotInteractive;

@@ -29,7 +29,9 @@ static NSMutableArray <Class> *_enablePlugins;
 
 @property (nonatomic, weak) UIViewController *toViewController;
 @property (nonatomic, weak) UIViewController *fromViewController;
+
 @property (nonatomic, strong) HeroContext *context;
+
 @property (nonatomic, assign) BOOL presenting;  //default is true in swift, but NO in here
 @property (nonatomic, assign) CGFloat progress;
 
@@ -46,11 +48,13 @@ static NSMutableArray <Class> *_enablePlugins;
 @property (nonatomic, strong) CADisplayLink *displayLink;
 @property (nonatomic, copy) NSMutableArray <id <HeroProgressUpdateObserver>>* progressUpdateObservers;
 
+/// max duration needed by the default animator and plugins
 @property (nonatomic, assign) NSTimeInterval totalDuration;
 @property (nonatomic, assign) NSTimeInterval duration;
 @property (nonatomic, strong) NSNumber *beginTime;      //@(Double)
 
 @property (nonatomic, assign) BOOL finishing;
+/// true if transitioning inside a UINavigationController or UITabBarController
 @property (nonatomic, assign) BOOL inContainerController;
 
 @property (nonatomic, strong) UIView *toView;
