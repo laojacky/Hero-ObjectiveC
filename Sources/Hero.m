@@ -21,7 +21,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
 
-typedef void(^HeroCompletionCallback)();
+typedef void(^HeroCompletionCallback)(BOOL animate);
 
 static NSMutableArray <Class> *_enablePlugins;
 
@@ -187,9 +187,14 @@ typedef void(^HeroUpdateBlock)();
     self.progress = progress;
 }
 
-- (void)end {
+- (void)endAnimated:(BOOL)animate {
     
     if (!self.transitioning || !self.interactive) {
+        return;
+    }
+    
+    if (!animate) {
+        [self complete:YES];
         return;
     }
     
@@ -200,9 +205,14 @@ typedef void(^HeroUpdateBlock)();
     [self completeAfter:maxTime finishing:YES];
 }
 
-- (void)cancel {
+- (void)cancelAnimated:(BOOL)animate {
     
     if (!self.transitioning || !self.interactive) {
+        return;
+    }
+    
+    if (!animate) {
+        [self complete:NO];
         return;
     }
     
@@ -381,7 +391,7 @@ typedef void(^HeroUpdateBlock)();
     });
 }
 
-- (void)transitionFrom:(UIViewController *)from to:(UIViewController *)to inView:(UIView *)view completion:(void(^)())completion {
+- (void)transitionFrom:(UIViewController *)from to:(UIViewController *)to inView:(UIView *)view completion:(void(^)(BOOL animate))completion {
     
     if (self.transitioning) {
         return;
@@ -476,7 +486,7 @@ typedef void(^HeroUpdateBlock)();
     }
     [tContext completeTransition:finished];
     if (completion) {
-        completion();
+        completion(finished);
     }
 }
 

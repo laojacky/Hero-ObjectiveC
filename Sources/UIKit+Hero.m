@@ -197,25 +197,26 @@ static struct PreviousDelegates prevDelegates = {@"heroPreviousNavigationDelegat
             [Hero shared].forceNotInteractive = @(YES);
         }
         [navigationController setViewControllers:vcs animated:YES];
-    } else {
+    } else if (self.view.superview) {
         UIViewController *parentVC = [self presentingViewController];
         UIView *container = self.view.superview;
         id <UIViewControllerTransitioningDelegate> oldTransitionDelegate = [next transitioningDelegate];
         next.isHeroEnabled = YES;
-        [[Hero shared] transitionFrom:self to:next inView:container completion:^{
+        [[Hero shared] transitionFrom:self to:next inView:container completion:^(BOOL finished){
             if (![oldTransitionDelegate isKindOfClass:[Hero class]]) {
                 next.isHeroEnabled = NO;
                 next.transitioningDelegate = oldTransitionDelegate;
             }
             
-            [[UIApplication sharedApplication].keyWindow addSubview:[next view]];
-            
-            if (parentVC) {
-                [self dismissViewControllerAnimated:NO completion:^{
-                    [parentVC presentViewController:next animated:NO completion:nil];
-                }];
-            } else {
-                [[UIApplication sharedApplication].keyWindow setRootViewController:next];
+            if (finished) {
+                [[UIApplication sharedApplication].keyWindow addSubview:[next view]];
+                if (parentVC) {
+                    [self dismissViewControllerAnimated:NO completion:^{
+                        [parentVC presentViewController:next animated:NO completion:nil];
+                    }];
+                } else {
+                    [[UIApplication sharedApplication].keyWindow setRootViewController:next];
+                }
             }
         }];
     }

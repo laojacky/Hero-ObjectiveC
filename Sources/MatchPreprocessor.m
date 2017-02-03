@@ -19,7 +19,7 @@
             HeroTargetState *tvState = [self.context stateOfView:tv] ? [self.context stateOfView:tv] : [[HeroTargetState alloc] init];
             NSNumber *zPosition = tvState.zPositionIfMatched;
             if (zPosition) {
-                tvState.zPosition = zPosition;
+                [tvState appendContentsOfModifiers:@[[HeroModifier zPosition:zPosition]]];
             }
             tvState.source = heroID;
             

@@ -45,15 +45,19 @@
  Finish the interactive transition.
  Will stop the interactive transition and animate from the
  current state to the **end** state
+ - Parameters:
+ - animate: should/not perform animation
  */
-- (void)end;
+- (void)endAnimated:(BOOL)animate;
 
 /**
  Cancel the interactive transition.
  Will stop the interactive transition and animate from the
  current state to the **begining** state
+ - Parameters:
+ - animate: should/not perform animation
  */
-- (void)cancel;
+- (void)cancelAnimated:(BOOL)animate;
 
 /**
  Override modifiers during an interactive animation.
@@ -82,7 +86,7 @@
 
 - (void)start;
 
-- (void)transitionFrom:(UIViewController *)from to:(UIViewController *)to inView:(UIView *)view completion:(void(^)())completion;
+- (void)transitionFrom:(UIViewController *)from to:(UIViewController *)to inView:(UIView *)view completion:(void(^)(BOOL animate))completion;
 
 - (void)completeAfter:(NSTimeInterval)after finishing:(BOOL)finishing;
 

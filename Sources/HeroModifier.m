@@ -174,6 +174,12 @@ const HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
     }];
 }
 
++ (HeroModifier *)useGlobalCoordinateSpace {
+    return [[HeroModifier alloc] initWithApplyFunction:^(HeroTargetState *targetState) {
+        targetState.useGlobalCoordinateSpace = @(YES);
+    }];
+}
+
 @end
 
 
@@ -270,6 +276,10 @@ const HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
         if (heroID) {
             modifier = [self source:heroID];
         }
+    }
+    
+    if ([name isEqualToString:@"useGlobalCoordinateSpace"]) {
+        modifier = [self useGlobalCoordinateSpace];
     }
     
     if ([name isEqualToString:@"ignoreSubviewModifiers"]) {

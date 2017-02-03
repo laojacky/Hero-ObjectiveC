@@ -79,6 +79,27 @@
         return snapshot;
     }
     
+    UIView *containerView = self.container;
+    if ([self stateOfView:view].useGlobalCoordinateSpace && [[self stateOfView:view].useGlobalCoordinateSpace boolValue] != YES) {
+        containerView = view;
+        __block BOOL contain = NO;
+        __block NSInteger index = 0;
+        [self.snapshotViews enumerateObjectsUsingBlock:^(NSArray * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj[0] == containerView) {
+                contain = YES;
+                index = idx;
+                *stop = YES;
+            }
+        }];
+        while (containerView != self.container &&
+               !contain && containerView.superview) {
+            containerView = containerView.superview;
+        }
+        if (contain) {
+            containerView = [self.snapshotViews objectAtIndex:index][1];
+        }
+    }
+    
     [self unhideView:view];
     
     // capture a snapshot without alpha & cornerRadius
@@ -156,12 +177,12 @@
     snapshot.layer.shadowColor = view.layer.shadowColor;
     snapshot.layer.shadowOffset = view.layer.shadowOffset;
     
-    snapshot.frame = [self.container convertRect:view.bounds fromView:view];
+    snapshot.frame = [containerView convertRect:view.bounds fromView:view];
     snapshot.heroID = view.heroID;
     
     [self hideView:view];
     
-    [self.container addSubview:snapshot];
+    [containerView addSubview:snapshot];
     contain = NO;
     __block NSInteger index = 0;
     [self.snapshotViews enumerateObjectsUsingBlock:^(NSArray * _Nonnull pair, NSUInteger idx, BOOL * _Nonnull stop) {

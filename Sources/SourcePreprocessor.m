@@ -41,6 +41,9 @@
     state.transform = nil;
     state.size = nil;
 
+    // use global coordinate space since over target position is converted from the global container
+    state.useGlobalCoordinateSpace = @(YES);
+    
     state.position = [NSValue valueWithCGPoint:targetPos];
     if (!CGSizeEqualToSize(view.bounds.size, targetView.bounds.size)) {
         state.size = [NSValue valueWithCGSize:targetView.bounds.size];

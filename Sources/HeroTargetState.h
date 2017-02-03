@@ -27,6 +27,7 @@
 @property (nonatomic, strong) NSNumber *zPositionIfMatched;     //@(CGFloat)
 @property (nonatomic, copy) NSString *source;
 @property (nonatomic, copy) NSArray *cascade;       //[@(NSTimeInterval), @(CascadeDirection), @(BOOL)], represents cascade timeinterval, direction and delayMatchedViews
+@property (nonatomic, strong) NSNumber *useGlobalCoordinateSpace;   //Default
 
 @property (nonatomic, strong) NSNumber *ignoreSubviewModifiers;  //@(BOOL)
 

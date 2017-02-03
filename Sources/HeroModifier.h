@@ -168,6 +168,7 @@ extern const HeroModifierApplyBlock fade;;
 
 /**
  Same as zPosition modifier but only effective only when the view is matched. Will override zPosition modifier.
+ Will also force the view to use global coordinate space when the view is matched.
  - Parameters:
  - zPosition: zPosition during the animation
  */
@@ -182,6 +183,7 @@ extern const HeroModifierApplyBlock fade;;
 
 /**
  transition from/to the state of the view with matching heroID
+ Will also force the view to use global coordinate space.
  - Parameters:
  - heroID: the source view's heroId.
  */
@@ -204,6 +206,18 @@ extern const HeroModifierApplyBlock fade;;
  */
 + (HeroModifier *)cascadeWithDelta:(NSTimeInterval)delta direction:(CascadeDirection)direction delayMatchedViews:(BOOL)delayMatchedViews;
 
+/**
+ +   Use global coordinate space.
+ +
+ +   When using global coordinate space. The view become a independent view that is not a subview of any view.
+ +   It won't move when its parent view moves, and won't be affected by parent view's attributes.
+ +
+ +   When a view is matched, this is automatically enabled.
+ +   The `source` modifier will also enable this.
+ +
+ +   Global coordinate space is default for all views prior to version 0.1.3
+ +   */
++ (HeroModifier *)useGlobalCoordinateSpace;
 @end
 
 
