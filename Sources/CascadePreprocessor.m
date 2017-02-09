@@ -21,36 +21,6 @@
     
     if (self = [super init]) {
         
-        __weak typeof(self) weakSelf = self;
-        self.comparator = ^NSComparisonResult(UIView *view1, UIView *view2) {
-            switch (weakSelf.direction) {
-                case CascadeDirectionTopToBottom:
-                    return CGRectGetMinY(view1.frame) < CGRectGetMinY(view2.frame);
-                    break;
-                case CascadeDirectionBottomToTop:
-                    return (CGRectGetMaxY(view1.frame) == CGRectGetMaxY(view2.frame) ?
-                            CGRectGetMaxX(view1.frame) > CGRectGetMaxX(view2.frame) :
-                            CGRectGetMaxY(view1.frame) > CGRectGetMaxY(view2.frame));
-                    break;
-                case CascadeDirectionLeftToRight:
-                    return CGRectGetMinX(view1.frame) < CGRectGetMinX(view2.frame);
-                    break;
-                case CascadeDirectionRightToLeft:
-                    return CGRectGetMaxX(view1.frame) < CGRectGetMaxX(view2.frame);
-                    break;
-                case CascadeDirectionRadial:
-                    return ([weakSelf distanceFrom:view1.center to:weakSelf.center] <
-                            [weakSelf distanceFrom:view2.center to:weakSelf.center]);
-                    break;
-                case CascadeDirectionInverseRadial:
-                    return ([weakSelf distanceFrom:view2.center to:weakSelf.center] <
-                            [weakSelf distanceFrom:view1.center to:weakSelf.center]);
-                    break;
-                default:
-                    break;
-            }
-        };
-        
         if ([string isEqualToString:@"bottomToTop"]) {
             self.direction = CascadeDirectionBottomToTop;
             return self;
@@ -125,6 +95,43 @@
             }
         }
     }];
+}
+
+#pragma mark - Getter
+- (NSComparator)comparator {
+    
+    if (!_comparator) {
+        __weak typeof(self) weakSelf = self;
+        _comparator = ^NSComparisonResult(UIView *view1, UIView *view2) {
+            switch (weakSelf.direction) {
+                case CascadeDirectionTopToBottom:
+                    return CGRectGetMinY(view1.frame) < CGRectGetMinY(view2.frame);
+                    break;
+                case CascadeDirectionBottomToTop:
+                    return (CGRectGetMaxY(view1.frame) == CGRectGetMaxY(view2.frame) ?
+                            CGRectGetMaxX(view1.frame) > CGRectGetMaxX(view2.frame) :
+                            CGRectGetMaxY(view1.frame) > CGRectGetMaxY(view2.frame));
+                    break;
+                case CascadeDirectionLeftToRight:
+                    return CGRectGetMinX(view1.frame) < CGRectGetMinX(view2.frame);
+                    break;
+                case CascadeDirectionRightToLeft:
+                    return CGRectGetMaxX(view1.frame) < CGRectGetMaxX(view2.frame);
+                    break;
+                case CascadeDirectionRadial:
+                    return ([weakSelf distanceFrom:view1.center to:weakSelf.center] <
+                            [weakSelf distanceFrom:view2.center to:weakSelf.center]);
+                    break;
+                case CascadeDirectionInverseRadial:
+                    return ([weakSelf distanceFrom:view2.center to:weakSelf.center] <
+                            [weakSelf distanceFrom:view1.center to:weakSelf.center]);
+                    break;
+                default:
+                    break;
+            }
+        };
+    }
+    return _comparator;
 }
 
 #pragma mark - Private
