@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		640CBFC41E4C64C900A5552E /* UIImage+AverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 640CBFC31E4C64C900A5552E /* UIImage+AverageColor.m */; };
+		647AF1261E4C45FD001A5653 /* ListToGrid.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 647AF1241E4C45FD001A5653 /* ListToGrid.storyboard */; };
+		647AF1291E4C4631001A5653 /* ListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 647AF1281E4C4631001A5653 /* ListTableViewController.m */; };
+		647AF12C1E4C4661001A5653 /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 647AF12B1E4C4661001A5653 /* ListTableViewCell.m */; };
+		647AF13F1E4C4C0B001A5653 /* ImageLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 647AF13E1E4C4C0B001A5653 /* ImageLibrary.m */; };
+		647AF1421E4C4F5F001A5653 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 647AF1411E4C4F5F001A5653 /* ImageViewController.m */; };
+		647AF1451E4C5045001A5653 /* GridCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 647AF1441E4C5045001A5653 /* GridCollectionViewController.m */; };
+		647AF1481E4C5527001A5653 /* GridImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 647AF1471E4C5527001A5653 /* GridImageCell.m */; };
 		64DE084C1E38454D008ACFA9 /* CityGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DE084B1E38454D008ACFA9 /* CityGuideViewController.m */; };
 		64DE084F1E384720008ACFA9 /* CityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DE084E1E384720008ACFA9 /* CityViewController.m */; };
 		64F079991E346D94005331E0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F079981E346D94005331E0 /* main.m */; };
@@ -42,6 +50,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		640CBFC21E4C64C900A5552E /* UIImage+AverageColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AverageColor.h"; sourceTree = "<group>"; };
+		640CBFC31E4C64C900A5552E /* UIImage+AverageColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AverageColor.m"; sourceTree = "<group>"; };
+		647AF1251E4C45FD001A5653 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ListToGrid.storyboard; sourceTree = "<group>"; };
+		647AF1271E4C4631001A5653 /* ListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListTableViewController.h; path = ListToGrid/ListTableViewController.h; sourceTree = "<group>"; };
+		647AF1281E4C4631001A5653 /* ListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListTableViewController.m; path = ListToGrid/ListTableViewController.m; sourceTree = "<group>"; };
+		647AF12A1E4C4661001A5653 /* ListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListTableViewCell.h; path = ListToGrid/ListTableViewCell.h; sourceTree = "<group>"; };
+		647AF12B1E4C4661001A5653 /* ListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListTableViewCell.m; path = ListToGrid/ListTableViewCell.m; sourceTree = "<group>"; };
+		647AF13D1E4C4C0B001A5653 /* ImageLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageLibrary.h; path = ImageGallery/ImageLibrary.h; sourceTree = "<group>"; };
+		647AF13E1E4C4C0B001A5653 /* ImageLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageLibrary.m; path = ImageGallery/ImageLibrary.m; sourceTree = "<group>"; };
+		647AF1401E4C4F5F001A5653 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageViewController.h; path = ImageGallery/ImageViewController.h; sourceTree = "<group>"; };
+		647AF1411E4C4F5F001A5653 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageViewController.m; path = ImageGallery/ImageViewController.m; sourceTree = "<group>"; };
+		647AF1431E4C5045001A5653 /* GridCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GridCollectionViewController.h; path = ListToGrid/GridCollectionViewController.h; sourceTree = "<group>"; };
+		647AF1441E4C5045001A5653 /* GridCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GridCollectionViewController.m; path = ListToGrid/GridCollectionViewController.m; sourceTree = "<group>"; };
+		647AF1461E4C5527001A5653 /* GridImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GridImageCell.h; path = ListToGrid/GridImageCell.h; sourceTree = "<group>"; };
+		647AF1471E4C5527001A5653 /* GridImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GridImageCell.m; path = ListToGrid/GridImageCell.m; sourceTree = "<group>"; };
 		64DE084A1E38454D008ACFA9 /* CityGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CityGuideViewController.h; path = CityGuide/CityGuideViewController.h; sourceTree = "<group>"; };
 		64DE084B1E38454D008ACFA9 /* CityGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CityGuideViewController.m; path = CityGuide/CityGuideViewController.m; sourceTree = "<group>"; };
 		64DE084D1E384720008ACFA9 /* CityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CityViewController.h; path = CityGuide/CityViewController.h; sourceTree = "<group>"; };
@@ -113,6 +136,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		647AF1231E4C45EC001A5653 /* ListToGrid */ = {
+			isa = PBXGroup;
+			children = (
+				647AF1241E4C45FD001A5653 /* ListToGrid.storyboard */,
+				647AF12A1E4C4661001A5653 /* ListTableViewCell.h */,
+				647AF12B1E4C4661001A5653 /* ListTableViewCell.m */,
+				647AF1461E4C5527001A5653 /* GridImageCell.h */,
+				647AF1471E4C5527001A5653 /* GridImageCell.m */,
+				647AF1271E4C4631001A5653 /* ListTableViewController.h */,
+				647AF1281E4C4631001A5653 /* ListTableViewController.m */,
+				647AF1431E4C5045001A5653 /* GridCollectionViewController.h */,
+				647AF1441E4C5045001A5653 /* GridCollectionViewController.m */,
+			);
+			name = ListToGrid;
+			sourceTree = "<group>";
+		};
+		647AF13C1E4C4BED001A5653 /* ImageGallery */ = {
+			isa = PBXGroup;
+			children = (
+				647AF13D1E4C4C0B001A5653 /* ImageLibrary.h */,
+				647AF13E1E4C4C0B001A5653 /* ImageLibrary.m */,
+				647AF1401E4C4F5F001A5653 /* ImageViewController.h */,
+				647AF1411E4C4F5F001A5653 /* ImageViewController.m */,
+			);
+			name = ImageGallery;
+			sourceTree = "<group>";
+		};
 		64F0798B1E346D94005331E0 = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +208,8 @@
 				64F0799B1E346D94005331E0 /* AppDelegate.m */,
 				64F079CB1E347BC1005331E0 /* UIKit+HeroExamples.h */,
 				64F079CC1E347BC1005331E0 /* UIKit+HeroExamples.m */,
+				640CBFC21E4C64C900A5552E /* UIImage+AverageColor.h */,
+				640CBFC31E4C64C900A5552E /* UIImage+AverageColor.m */,
 				64F079A31E346D94005331E0 /* Assets.xcassets */,
 				64F079A51E346D94005331E0 /* LaunchScreen.storyboard */,
 				64F079A81E346D94005331E0 /* Info.plist */,
@@ -172,6 +224,8 @@
 				64F079D31E348029005331E0 /* Menu.storyboard */,
 				64F079D51E348029005331E0 /* MusicPlayer.storyboard */,
 				64F079D11E348029005331E0 /* Basic.storyboard */,
+				647AF13C1E4C4BED001A5653 /* ImageGallery */,
+				647AF1231E4C45EC001A5653 /* ListToGrid */,
 				64F079E01E3481BD005331E0 /* CityGuide */,
 			);
 			name = Examples;
@@ -297,6 +351,7 @@
 				TargetAttributes = {
 					64F079931E346D94005331E0 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = FY3S8C9TA9;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -325,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64F079DA1E348029005331E0 /* Menu.storyboard in Resources */,
+				647AF1261E4C45FD001A5653 /* ListToGrid.storyboard in Resources */,
 				64F079E31E3481D5005331E0 /* CityGuide.storyboard in Resources */,
 				64F079A71E346D94005331E0 /* LaunchScreen.storyboard in Resources */,
 				64F079D71E348029005331E0 /* Basic.storyboard in Resources */,
@@ -341,6 +397,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				647AF12C1E4C4661001A5653 /* ListTableViewCell.m in Sources */,
 				64F079E81E348217005331E0 /* City.m in Sources */,
 				64F07A041E348C41005331E0 /* HeroPlugin.m in Sources */,
 				64F079F81E348759005331E0 /* UIKit+Hero.m in Sources */,
@@ -350,19 +407,25 @@
 				64F07A281E370198005331E0 /* MatchPreprocessor.m in Sources */,
 				64F07A161E360E3C005331E0 /* CAMediaTimingFunction+Hero.m in Sources */,
 				64F07A2E1E370F18005331E0 /* HeroDefaultAnimator.m in Sources */,
+				647AF1451E4C5045001A5653 /* GridCollectionViewController.m in Sources */,
 				64F07A011E348BCA005331E0 /* HeroContext.m in Sources */,
 				64DE084C1E38454D008ACFA9 /* CityGuideViewController.m in Sources */,
 				64F079CD1E347BC1005331E0 /* UIKit+HeroExamples.m in Sources */,
+				647AF13F1E4C4C0B001A5653 /* ImageLibrary.m in Sources */,
+				647AF1481E4C5527001A5653 /* GridImageCell.m in Sources */,
 				64F07A071E348C5C005331E0 /* HeroTargetState.m in Sources */,
 				64F079FE1E348BAB005331E0 /* Hero.m in Sources */,
 				64F0799C1E346D94005331E0 /* AppDelegate.m in Sources */,
+				647AF1291E4C4631001A5653 /* ListTableViewController.m in Sources */,
 				64F079ED1E348492005331E0 /* CityCell.m in Sources */,
 				64F079FB1E348AA2005331E0 /* HeroModifier.m in Sources */,
 				64F07A0D1E348EDD005331E0 /* BasePreprocessor.m in Sources */,
+				640CBFC41E4C64C900A5552E /* UIImage+AverageColor.m in Sources */,
 				64F079991E346D94005331E0 /* main.m in Sources */,
 				64F07A251E36FC80005331E0 /* IgnoreSubviewModifiersPreprocessor.m in Sources */,
 				64F07A101E3608AF005331E0 /* NSArray+HeroModifier.m in Sources */,
 				64F07A0A1E348C7A005331E0 /* HeroTypes.m in Sources */,
+				647AF1421E4C4F5F001A5653 /* ImageViewController.m in Sources */,
 				64DE084F1E384720008ACFA9 /* CityViewController.m in Sources */,
 				64F07A2B1E370446005331E0 /* SourcePreprocessor.m in Sources */,
 				64F07A311E3727DC005331E0 /* HeroDefaultAnimatorViewContext.m in Sources */,
@@ -372,6 +435,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		647AF1241E4C45FD001A5653 /* ListToGrid.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				647AF1251E4C45FD001A5653 /* Base */,
+			);
+			name = ListToGrid.storyboard;
+			sourceTree = "<group>";
+		};
 		64F079A01E346D94005331E0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -518,7 +589,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = FY3S8C9TA9;
 				INFOPLIST_FILE = "Hero-ObjectiveC/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -531,7 +602,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = FY3S8C9TA9;
 				INFOPLIST_FILE = "Hero-ObjectiveC/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
