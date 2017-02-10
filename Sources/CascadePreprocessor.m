@@ -10,6 +10,7 @@
 
 @interface CascadePreprocessor ()
 
+@property (nonatomic, assign) CGPoint center;
 @property (nonatomic, assign) CascadeDirection direction;
 @property (nonatomic, assign) NSComparator comparator;
 
@@ -17,7 +18,7 @@
 
 @implementation CascadePreprocessor
 
-- (instancetype)initWithDirectionString:(NSString *)string {
+- (instancetype)initWithDirectionString:(NSString *)string center:(NSValue *)center {
     
     if (self = [super init]) {
         
@@ -26,18 +27,74 @@
             return self;
         }
         if ([string isEqualToString:@"leftToRight"]) {
-            self.direction = CascadeDirectionBottomToTop;
+            self.direction = CascadeDirectionLeftToRight;
             return self;
         }
         if ([string isEqualToString:@"rightToLeft"]) {
-            self.direction = CascadeDirectionBottomToTop;
+            self.direction = CascadeDirectionRightToLeft;
             return self;
         }
         if ([string isEqualToString:@"topToBottom"]) {
-            self.direction = CascadeDirectionBottomToTop;
+            self.direction = CascadeDirectionTopToBottom;
+            return self;
+        }
+        if ([string isEqualToString:@"radial"]) {
+            self.direction = CascadeDirectionRadial;
+            self.center = [center CGPointValue];
+            return self;
+        }
+        if ([string isEqualToString:@"inverseRadial"]) {
+            self.direction = CascadeDirectionInverseRadial;
+            self.center = [center CGPointValue];
             return self;
         }
         return nil;
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithDirectionType:(CascadeDirection)type center:(NSValue *)center {
+    
+    if (self = [super init]) {
+        
+        switch (type) {
+            case CascadeDirectionBottomToTop: {
+                self.direction = CascadeDirectionBottomToTop;
+                return self;
+            }
+                break;
+            case CascadeDirectionLeftToRight: {
+                self.direction = CascadeDirectionLeftToRight;
+                return self;
+            }
+                break;
+            case CascadeDirectionRightToLeft: {
+                self.direction = CascadeDirectionRightToLeft;
+                return self;
+            }
+                break;
+            case CascadeDirectionTopToBottom: {
+                self.direction = CascadeDirectionTopToBottom;
+                return self;
+            }
+                break;
+            case CascadeDirectionRadial: {
+                self.direction = CascadeDirectionRadial;
+                self.center = [center CGPointValue];
+                return self;
+            }
+                break;
+            case CascadeDirectionInverseRadial: {
+                self.direction = CascadeDirectionInverseRadial;
+                self.center = [center CGPointValue];
+                return self;
+            }
+                break;
+                
+            default:
+                break;
+        }
     }
     
     return self;

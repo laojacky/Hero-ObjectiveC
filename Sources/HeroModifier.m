@@ -269,7 +269,7 @@ const HeroModifierApplyBlock fade = ^(HeroTargetState *targetState) {
     if ([name isEqualToString:@"cascade"]) {
         CascadeDirection cascadeDirection = CascadeDirectionTopToBottom;
         if ([parameters[1] isKindOfClass:[NSString class]]) {
-            CascadePreprocessor * cascadePreprocessor = [[CascadePreprocessor alloc] initWithDirectionString:parameters[1]];
+            CascadePreprocessor * cascadePreprocessor = [[CascadePreprocessor alloc] initWithDirectionString:parameters[1] center:nil];
             cascadeDirection = cascadePreprocessor.direction;
         }
         modifier = [self cascadeWithDelta:[parameters getFloatAtIndex:0] ? [parameters getFloatAtIndex:0] : 0.02 direction:cascadeDirection delayMatchedViews:[parameters[2] boolValue] ? [parameters[2] boolValue] : NO];
