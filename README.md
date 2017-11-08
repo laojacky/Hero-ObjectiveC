@@ -2,7 +2,7 @@
 Copyright: lkzhao. [Hero in Swift](https://github.com/lkzhao/Hero)
 
 Obj-C project: LucaGalaxy.
-
+## NOTE: 2017-11-08 I still have no time for finish our job, so we will so happy if you can submit some PR to us. Meanwhile, i will continue my job in few months
 
 ```NOTE: Some transitions can be performed now. Howerver, "ImageViewer", "List to Grid", "Image Gallery", and Advanced UI testing have not been translated so far. I will continue to finish this work ASAP```
 
