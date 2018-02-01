@@ -144,13 +144,13 @@
     view.layer.cornerRadius = oldCornerRadius;
     view.alpha = oldAlpha;
     
-    if (![view isKindOfClass:[UINavigationBar class]]) {
-        // the Snapshot's contentView must have hold the cornerRadius value,
-        // since the snapshot might not have maskToBounds set
-        UIView *contentView = snapshot.subviews[0];
-        contentView.layer.cornerRadius = view.layer.cornerRadius;
-        contentView.layer.masksToBounds = YES;
-    }
+//     if (![view isKindOfClass:[UINavigationBar class]]) {
+//         // the Snapshot's contentView must have hold the cornerRadius value,
+//         // since the snapshot might not have maskToBounds set
+//         UIView *contentView = snapshot.subviews[0];
+//         contentView.layer.cornerRadius = view.layer.cornerRadius;
+//         contentView.layer.masksToBounds = YES;
+//     }
     
     snapshot.layer.cornerRadius = view.layer.cornerRadius;
     __block BOOL contain = NO;
